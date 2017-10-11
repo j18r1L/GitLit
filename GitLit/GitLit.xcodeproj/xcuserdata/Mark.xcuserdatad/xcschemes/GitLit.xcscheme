@@ -14,7 +14,7 @@
             buildForAnalyzing = "YES">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "4D627D731F8E6DD900AEA30F"
+               BlueprintIdentifier = "4DF439EF1F8EAFCD00DF59EC"
                BuildableName = "GitLit.app"
                BlueprintName = "GitLit"
                ReferencedContainer = "container:GitLit.xcodeproj">
@@ -32,9 +32,19 @@
             skipped = "NO">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "4D627D871F8E6DD900AEA30F"
+               BlueprintIdentifier = "4DF43A031F8EAFCD00DF59EC"
                BuildableName = "GitLitTests.xctest"
                BlueprintName = "GitLitTests"
+               ReferencedContainer = "container:GitLit.xcodeproj">
+            </BuildableReference>
+         </TestableReference>
+         <TestableReference
+            skipped = "NO">
+            <BuildableReference
+               BuildableIdentifier = "primary"
+               BlueprintIdentifier = "4DF43A0E1F8EAFCD00DF59EC"
+               BuildableName = "GitLitUITests.xctest"
+               BlueprintName = "GitLitUITests"
                ReferencedContainer = "container:GitLit.xcodeproj">
             </BuildableReference>
          </TestableReference>
@@ -42,7 +52,7 @@
       <MacroExpansion>
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "4D627D731F8E6DD900AEA30F"
+            BlueprintIdentifier = "4DF439EF1F8EAFCD00DF59EC"
             BuildableName = "GitLit.app"
             BlueprintName = "GitLit"
             ReferencedContainer = "container:GitLit.xcodeproj">
@@ -65,7 +75,7 @@
          runnableDebuggingMode = "0">
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "4D627D731F8E6DD900AEA30F"
+            BlueprintIdentifier = "4DF439EF1F8EAFCD00DF59EC"
             BuildableName = "GitLit.app"
             BlueprintName = "GitLit"
             ReferencedContainer = "container:GitLit.xcodeproj">
@@ -84,7 +94,7 @@
          runnableDebuggingMode = "0">
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "4D627D731F8E6DD900AEA30F"
+            BlueprintIdentifier = "4DF439EF1F8EAFCD00DF59EC"
             BuildableName = "GitLit.app"
             BlueprintName = "GitLit"
             ReferencedContainer = "container:GitLit.xcodeproj">
