@@ -15,6 +15,7 @@
 		4DF439FE1F8EAFCD00DF59EC /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 4DF439FC1F8EAFCD00DF59EC /* LaunchScreen.storyboard */; };
 		4DF43A091F8EAFCD00DF59EC /* GitLitTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4DF43A081F8EAFCD00DF59EC /* GitLitTests.swift */; };
 		4DF43A141F8EAFCD00DF59EC /* GitLitUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4DF43A131F8EAFCD00DF59EC /* GitLitUITests.swift */; };
+		58BD10B01F91202B006F6209 /* NewsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 58BD10AF1F91202B006F6209 /* NewsViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -49,6 +50,7 @@
 		4DF43A0F1F8EAFCD00DF59EC /* GitLitUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = GitLitUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		4DF43A131F8EAFCD00DF59EC /* GitLitUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GitLitUITests.swift; sourceTree = "<group>"; };
 		4DF43A151F8EAFCD00DF59EC /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		58BD10AF1F91202B006F6209 /* NewsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewsViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -102,6 +104,7 @@
 				4DF439F31F8EAFCD00DF59EC /* AppDelegate.swift */,
 				4DF439F51F8EAFCD00DF59EC /* ViewController.swift */,
 				4DF439F71F8EAFCD00DF59EC /* Main.storyboard */,
+				58BD10AF1F91202B006F6209 /* NewsViewController.swift */,
 				4D352A6E1F8FF00800C817BD /* MenuViewController.swift */,
 				4DF439FA1F8EAFCD00DF59EC /* Assets.xcassets */,
 				4DF439FC1F8EAFCD00DF59EC /* LaunchScreen.storyboard */,
@@ -268,6 +271,7 @@
 				4DF439F61F8EAFCD00DF59EC /* ViewController.swift in Sources */,
 				4D352A6F1F8FF00800C817BD /* MenuViewController.swift in Sources */,
 				4DF439F41F8EAFCD00DF59EC /* AppDelegate.swift in Sources */,
+				58BD10B01F91202B006F6209 /* NewsViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

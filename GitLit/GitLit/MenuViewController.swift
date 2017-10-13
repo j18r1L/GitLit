@@ -44,6 +44,14 @@ class MenuViewController: UIViewController, UITableViewDataSource, UITableViewDe
         }
         return cell
     }
+    //Press cell controller
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath){
+        let newsViewController = storyboard?.instantiateViewController(withIdentifier: "NewsVC")
+        //if "News" pressed - show NewsViewController
+        if(indexPath.row == 1){
+            self.navigationController?.pushViewController(newsViewController!, animated: true)
+        }
+    }
     
     @IBAction func menuClosedDidTouch(_ sender: AnyObject) {
         delegate?.menuCloseButtonTapped()
