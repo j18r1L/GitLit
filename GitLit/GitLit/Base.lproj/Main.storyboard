@@ -18,11 +18,13 @@
                     <view key="view" contentMode="scaleToFill" id="Ags-Rv-8Hs">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <color key="backgroundColor" white="0.66666666669999997" alpha="1" colorSpace="calibratedWhite"/>
+                        <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
                         <viewLayoutGuide key="safeArea" id="M9M-Od-PtN"/>
                     </view>
                     <navigationItem key="navigationItem" title="Home" id="c3n-B0-BCb">
-                        <barButtonItem key="leftBarButtonItem" title="Item" id="fFR-gw-bFk">
+                        <barButtonItem key="leftBarButtonItem" title="Item" image="icons8-Menu Filled-50-2" id="fFR-gw-bFk">
+                            <inset key="imageInsets" minX="-10" minY="0.0" maxX="0.0" maxY="-10"/>
+                            <color key="tintColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                             <connections>
                                 <action selector="menuBarButtonItem:" destination="Bvz-sb-nPi" id="P2r-d8-Aj4"/>
                             </connections>
@@ -112,4 +114,7 @@
             <point key="canvasLocation" x="-839" y="1610"/>
         </scene>
     </scenes>
+    <resources>
+        <image name="icons8-Menu Filled-50-2" width="50" height="50"/>
+    </resources>
 </document>
