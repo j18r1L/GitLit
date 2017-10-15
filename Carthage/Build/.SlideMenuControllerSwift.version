@@ -1,0 +1,18 @@
+{
+  "Mac" : [
+
+  ],
+  "watchOS" : [
+
+  ],
+  "tvOS" : [
+
+  ],
+  "commitish" : "3.0.2",
+  "iOS" : [
+    {
+      "name" : "SlideMenuControllerSwift",
+      "hash" : "5ab14b088022238f499c61ea7951e8af555f8b6fcdafdadea75db4ae4f869103"
+    }
+  ]
+}
