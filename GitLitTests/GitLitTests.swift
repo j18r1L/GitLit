@@ -1,15 +1,15 @@
 //
-//  GitLitTests.swift
-//  GitLitTests
+//  SideMenuTutorialTests.swift
+//  SideMenuTutorialTests
 //
-//  Created by Emil Astanov on 15.10.17.
-//  Copyright © 2017 Emil Astanov. All rights reserved.
+//  Created by Kyle Suchar on 3/9/17.
+//  Copyright © 2017 Kyle Suchar. All rights reserved.
 //
 
 import XCTest
 @testable import GitLit
 
-class GitLitTests: XCTestCase {
+class SideMenuTutorialTests: XCTestCase {
     
     override func setUp() {
         super.setUp()

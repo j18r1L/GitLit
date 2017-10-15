@@ -2,6 +2,6 @@
 <Workspace
    version = "1.0">
    <FileRef
-      location = "self:GitLit.xcodeproj">
+      location = "self:/Users/emilastanov/Downloads/SideMenuTutorial/GitLit.xcodeproj">
    </FileRef>
 </Workspace>

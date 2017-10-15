@@ -1,36 +1,21 @@
 //
 //  AppDelegate.swift
-//  GitLit
+//  SideMenuTutorial
 //
-//  Created by Emil Astanov on 15.10.17.
-//  Copyright © 2017 Emil Astanov. All rights reserved.
+//  Created by Kyle Suchar on 3/9/17.
+//  Copyright © 2017 Kyle Suchar. All rights reserved.
 //
 
 import UIKit
-import SlideMenuControllerSwift
-var buff: Int = 0
+
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
 
     var window: UIWindow?
-    
+
+
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
         // Override point for customization after application launch.
-        
-        if buff == 0{
-            let mainStoryboard: UIStoryboard = UIStoryboard(name: "Main", bundle: nil)
-            let mainVC = UINavigationController(rootViewController: mainStoryboard.instantiateViewController(withIdentifier: "ViewController"))
-            let menuVC = mainStoryboard.instantiateViewController(withIdentifier: "menuViewController")
-            let slideMenuController = SlideMenuController(mainViewController: mainVC, leftMenuViewController: menuVC)
-            mainVC.navigationBar.backgroundColor = UIColor.orange
-            self.window?.rootViewController = slideMenuController
-            self.window?.makeKeyAndVisible()
-        }
-
-        
-        
-
-        
         return true
     }
 

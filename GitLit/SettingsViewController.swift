@@ -1,19 +1,22 @@
 //
-//  NewsViewController.swift
-//  GitLit
+//  SettingsViewController.swift
+//  SideMenuTutorial
 //
-//  Created by Emil Astanov on 15.10.17.
+//  Created by Kyle Suchar on 5/7/17.
 //  Copyright © 2017 Kyle Suchar. All rights reserved.
 //
 
 import UIKit
 
-class NewsViewController: UIViewController {
+class SettingsViewController: UIViewController {
 
     @IBOutlet weak var menuButton: UIBarButtonItem!
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        
         sideMenus()
+
         // Do any additional setup after loading the view.
     }
 
@@ -21,6 +24,8 @@ class NewsViewController: UIViewController {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
+    
+    
     func sideMenus() {
         
         if revealViewController() != nil {
@@ -35,6 +40,7 @@ class NewsViewController: UIViewController {
             
         }
     }
+    
 
     /*
     // MARK: - Navigation
