@@ -48,7 +48,7 @@ REPOSITORY SETTINGS
 ISSUES
 Возможно управлять/изменять/открывать/закрывать issue
 
-PROFILE SETTINGS
+PROFILE SETTINGS    
 Возмодно изменять картинку профиля, статус, место работы (обучения)
 
 
