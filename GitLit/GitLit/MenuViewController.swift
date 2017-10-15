@@ -8,53 +8,28 @@
 
 import UIKit
 
-protocol MenuViewControllerDelegate {
-    func menuCloseButtonTapped()
-}
-
-class MenuViewController: UIViewController, UITableViewDataSource, UITableViewDelegate {
+class MenuViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
     
-    var delegate: MenuViewControllerDelegate?
+    @IBOutlet weak var menuTableView: UITableView!
+    
+    let myTitle = ["Profile","Repositories", "Issues", "News", "Notifications", "Search", "Settings"]
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
         // Do any additional setup after loading the view.
-    }
-    
-    //MARK: UITableViewDataSource, UITableViewDelegate
-    
-    func numberOfSections(in tableView: UITableView) -> Int {
-        return 1
+        menuTableView.delegate = self
+        menuTableView.dataSource = self
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 3
+        return myTitle.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "Cell", for: indexPath) as UITableViewCell
-        
-        if indexPath.row == 0 {
-            cell.textLabel?.text = "Profile"
-        } else if indexPath.row == 1 {
-            cell.textLabel?.text = "News"
-        } else if indexPath.row == 2 {
-            cell.textLabel?.text = "Repositories"
-        }
+        let cell = menuTableView.dequeueReusableCell(withIdentifier: "MenuCell") as! MenuTableViewCell
+        cell.labelText.text = myTitle[indexPath.row]
         return cell
-    }
-    //Press cell controller
-    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath){
-        let newsViewController = storyboard?.instantiateViewController(withIdentifier: "NewsVC")
-        //if "News" pressed - show NewsViewController
-        if(indexPath.row == 1){
-            self.navigationController?.pushViewController(newsViewController!, animated: true)
-        }
-    }
-    
-    @IBAction func menuClosedDidTouch(_ sender: AnyObject) {
-        delegate?.menuCloseButtonTapped()
     }
     
 }
