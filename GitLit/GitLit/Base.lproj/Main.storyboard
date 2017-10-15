@@ -22,7 +22,7 @@
                         <viewLayoutGuide key="safeArea" id="M9M-Od-PtN"/>
                     </view>
                     <navigationItem key="navigationItem" title="Home" id="c3n-B0-BCb">
-                        <barButtonItem key="leftBarButtonItem" title="Item" image="icons8-Menu Filled-50-2" id="fFR-gw-bFk">
+                        <barButtonItem key="leftBarButtonItem" image="icons8-Menu Filled-50-2" id="fFR-gw-bFk">
                             <inset key="imageInsets" minX="-10" minY="0.0" maxX="0.0" maxY="-10"/>
                             <color key="tintColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                             <connections>
