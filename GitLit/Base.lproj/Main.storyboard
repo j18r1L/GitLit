@@ -36,6 +36,7 @@
                                                 </label>
                                             </subviews>
                                             <constraints>
+                                                <constraint firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="GEu-Pu-Z8h" secondAttribute="trailingMargin" id="UJc-2s-CQv"/>
                                                 <constraint firstItem="GEu-Pu-Z8h" firstAttribute="centerY" secondItem="atb-gv-vSB" secondAttribute="centerY" id="i5b-Yw-4mx"/>
                                                 <constraint firstItem="GEu-Pu-Z8h" firstAttribute="leading" secondItem="atb-gv-vSB" secondAttribute="leadingMargin" id="ii2-tu-Wju"/>
                                             </constraints>
@@ -60,6 +61,7 @@
                                             </subviews>
                                             <constraints>
                                                 <constraint firstItem="cAp-5R-cxv" firstAttribute="centerY" secondItem="Acq-8K-gnN" secondAttribute="centerY" id="3pR-Tl-hH6"/>
+                                                <constraint firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="cAp-5R-cxv" secondAttribute="trailingMargin" id="rNy-Jv-nbs"/>
                                                 <constraint firstItem="cAp-5R-cxv" firstAttribute="leading" secondItem="Acq-8K-gnN" secondAttribute="leadingMargin" id="y7I-ii-F3c"/>
                                             </constraints>
                                         </tableViewCellContentView>
@@ -85,6 +87,7 @@
                                             <constraints>
                                                 <constraint firstItem="el4-g6-oWM" firstAttribute="leading" secondItem="iHl-mY-lcY" secondAttribute="leadingMargin" id="P7g-rC-Kod"/>
                                                 <constraint firstItem="el4-g6-oWM" firstAttribute="centerY" secondItem="iHl-mY-lcY" secondAttribute="centerY" id="Qod-H6-Rjk"/>
+                                                <constraint firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="el4-g6-oWM" secondAttribute="trailingMargin" id="rNg-7N-sjG"/>
                                             </constraints>
                                         </tableViewCellContentView>
                                         <color key="backgroundColor" red="0.1333333333" green="0.14901960780000001" blue="0.29411764709999999" alpha="0.59999999999999998" colorSpace="custom" customColorSpace="sRGB"/>
@@ -107,6 +110,7 @@
                                                 </label>
                                             </subviews>
                                             <constraints>
+                                                <constraint firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="LQ3-ck-VlY" secondAttribute="trailingMargin" id="bcj-qU-jhC"/>
                                                 <constraint firstItem="LQ3-ck-VlY" firstAttribute="centerY" secondItem="Hko-Nn-nlm" secondAttribute="centerY" id="e6d-3F-FDw"/>
                                                 <constraint firstItem="LQ3-ck-VlY" firstAttribute="leading" secondItem="Hko-Nn-nlm" secondAttribute="leadingMargin" id="qjO-zI-NeC"/>
                                             </constraints>
@@ -131,6 +135,7 @@
                                                 </label>
                                             </subviews>
                                             <constraints>
+                                                <constraint firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="rL0-tC-kJ1" secondAttribute="trailingMargin" id="9wg-z4-uab"/>
                                                 <constraint firstItem="rL0-tC-kJ1" firstAttribute="leading" secondItem="gxL-Oy-cQr" secondAttribute="leadingMargin" id="E6Q-FJ-Ip1"/>
                                                 <constraint firstItem="rL0-tC-kJ1" firstAttribute="centerY" secondItem="gxL-Oy-cQr" secondAttribute="centerY" id="PhC-NQ-uyB"/>
                                             </constraints>
@@ -155,6 +160,7 @@
                                                 </label>
                                             </subviews>
                                             <constraints>
+                                                <constraint firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="KKN-if-j5I" secondAttribute="trailingMargin" id="8cH-3P-kwf"/>
                                                 <constraint firstItem="KKN-if-j5I" firstAttribute="centerY" secondItem="Fss-eX-Apz" secondAttribute="centerY" id="IZ5-v7-m6Q"/>
                                                 <constraint firstItem="KKN-if-j5I" firstAttribute="leading" secondItem="Fss-eX-Apz" secondAttribute="leadingMargin" id="WnI-pA-Osa"/>
                                             </constraints>
@@ -180,6 +186,7 @@
                                             </subviews>
                                             <constraints>
                                                 <constraint firstItem="6dr-Pd-v0U" firstAttribute="centerY" secondItem="MW7-vJ-6Ov" secondAttribute="centerY" id="aLn-xE-TYy"/>
+                                                <constraint firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="6dr-Pd-v0U" secondAttribute="trailingMargin" id="n4B-Ha-FCT"/>
                                                 <constraint firstItem="6dr-Pd-v0U" firstAttribute="leading" secondItem="MW7-vJ-6Ov" secondAttribute="leadingMargin" id="wig-gJ-WfM"/>
                                             </constraints>
                                         </tableViewCellContentView>
@@ -354,7 +361,7 @@
                         <color key="backgroundColor" red="1" green="0.88251410590277779" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                     </view>
                     <navigationItem key="navigationItem" id="CxY-b0-hT1">
-                        <barButtonItem key="leftBarButtonItem" title="Item" image="Menu Filled-50" id="7rJ-gT-Ivx">
+                        <barButtonItem key="leftBarButtonItem" image="Menu Filled-50" id="7rJ-gT-Ivx">
                             <color key="tintColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                         </barButtonItem>
                     </navigationItem>
@@ -389,7 +396,7 @@
                         <color key="backgroundColor" red="1" green="1" blue="0.83121744791666663" alpha="1" colorSpace="calibratedRGB"/>
                     </view>
                     <navigationItem key="navigationItem" id="N6c-b7-TAH">
-                        <barButtonItem key="leftBarButtonItem" title="Item" image="Menu Filled-50" id="ore-TE-R3j">
+                        <barButtonItem key="leftBarButtonItem" image="Menu Filled-50" id="ore-TE-R3j">
                             <color key="tintColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                         </barButtonItem>
                     </navigationItem>
@@ -424,7 +431,7 @@
                         <color key="backgroundColor" red="0.84440104166666663" green="0.800048828125" blue="0.859375" alpha="1" colorSpace="calibratedRGB"/>
                     </view>
                     <navigationItem key="navigationItem" id="Nyo-nU-rOI">
-                        <barButtonItem key="leftBarButtonItem" title="Item" image="Menu Filled-50" id="0Ji-6s-9hz">
+                        <barButtonItem key="leftBarButtonItem" image="Menu Filled-50" id="0Ji-6s-9hz">
                             <color key="tintColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                         </barButtonItem>
                     </navigationItem>
@@ -459,7 +466,7 @@
                         <color key="backgroundColor" red="1" green="0.88441297743055558" blue="0.88441297743055558" alpha="1" colorSpace="calibratedRGB"/>
                     </view>
                     <navigationItem key="navigationItem" id="eM9-fy-1yL">
-                        <barButtonItem key="leftBarButtonItem" title="Item" image="Menu Filled-50" id="wzV-pZ-bau">
+                        <barButtonItem key="leftBarButtonItem" image="Menu Filled-50" id="wzV-pZ-bau">
                             <color key="tintColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                         </barButtonItem>
                     </navigationItem>
@@ -532,7 +539,7 @@
                         <color key="backgroundColor" red="0.78472222222222221" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                     </view>
                     <navigationItem key="navigationItem" id="bgj-73-tVd">
-                        <barButtonItem key="leftBarButtonItem" title="Item" image="Menu Filled-50" id="fWs-xX-gXS">
+                        <barButtonItem key="leftBarButtonItem" image="Menu Filled-50" id="fWs-xX-gXS">
                             <color key="tintColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                         </barButtonItem>
                     </navigationItem>
