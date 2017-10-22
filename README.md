@@ -52,9 +52,9 @@ PROFILE SETTINGS
 Возмодно изменять картинку профиля, статус, место работы (обучения)
 
 
-![Screenshot](1.png)
-![Screenshot](2.png)
-![Screenshot](3.png)
+![Screenshot](1.png | width=100)
+![Screenshot](2.png | width=100)
+![Screenshot](3.png | width=100)
 
 
 
