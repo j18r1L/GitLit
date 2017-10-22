@@ -9,7 +9,6 @@
 import UIKit
 import SwiftyJSON
 import Alamofire
-var authData = JSON("")
 class AuthViewController: UIViewController {
     @IBOutlet weak var infoLabel: UILabel!
     @IBOutlet weak var passField: UITextField!
@@ -24,12 +23,7 @@ class AuthViewController: UIViewController {
     }
     override func viewDidLoad() {
         super.viewDidLoad()
-        if (UserDefaults.standard.string(forKey: "token") != nil){
-            doLogIn(token: UserDefaults.standard.string(forKey: "token")!)
-        }
-        // Do any additional setup after loading the view.
     }
-
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
@@ -43,22 +37,10 @@ class AuthViewController: UIViewController {
             if jsonResp["message"] == "Bad credentials"{
                 self.infoLabel.text = "Incorrect username or password."
             } else {
-                authData = jsonResp
                 let homeVC = self.storyboard?.instantiateViewController(withIdentifier: "homeVC")
                 UserDefaults.standard.set(token, forKey: "token")
                 self.present(homeVC!, animated: false)
             }
         }
     }
-
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
-    }
-    */
-
 }

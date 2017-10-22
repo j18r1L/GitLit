@@ -7,17 +7,32 @@
 //
 
 import UIKit
-
+import Alamofire
+import SwiftyJSON
+var list = ["": JSON("")]
 class HomeViewController: UIViewController {
     @IBOutlet weak var avatarImage: UIImageView!
     @IBOutlet weak var usernameLabel: UILabel!
     override func viewDidLoad() {
         super.viewDidLoad()
-        self.title = authData["login"].string
-        parseAvatarImage(url: authData["avatar_url"].string!)
-        usernameLabel.text = authData["name"].string
-        print(authData)
+        getData(token: UserDefaults.standard.string(forKey: "token")!)
         // Do any additional setup after loading the view.
+    }
+    func setTitle(title: String){
+        self.title = title
+    }
+    func getData(token: String){
+        let headers = [
+            "Authorization" : "Basic " + token
+        ]
+        Alamofire.request("https://api.github.com/user", headers: headers).responseJSON{ response in
+            list = JSON(response.result.value!).dictionary!
+            //print(self.list)
+            let UserData = JSON(response.result.value!)
+            self.setTitle(title: UserData["login"].string!)
+            self.parseAvatarImage(url: UserData["avatar_url"].string!)
+            self.usernameLabel.text = UserData["name"].string!
+        }
     }
     func parseAvatarImage(url: String){
         let imgURL: NSURL = NSURL(string: url)!
@@ -33,17 +48,4 @@ class HomeViewController: UIViewController {
         let AuthVC = self.storyboard?.instantiateViewController(withIdentifier: "AuthVC")
         self.present(AuthVC!, animated: false)
     }
-    
-    
-
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
-    }
-    */
-
 }
