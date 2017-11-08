@@ -63,7 +63,7 @@ class HomeTableViewController: UITableViewController{
             cell.userAvatar.image = dataCell[indexPath.row].image
             cell.userBio.text = dataCell[indexPath.row].bio
             cell.userName.text = dataCell[indexPath.row].name
-            self.tableView.contentInset = UIEdgeInsets(top: (self.navigationController?.navigationBar.frame.size.height)!+15, left: 0, bottom: 0,right: 0)
+            //self.tableView.contentInset = UIEdgeInsets(top: (self.navigationController?.navigationBar.frame.size.height)!+15, left: 0, bottom: 0,right: 0)
             cell.selectionStyle = UITableViewCellSelectionStyle.none
             return cell
         } else if dataCell[indexPath.row].cell == 2{

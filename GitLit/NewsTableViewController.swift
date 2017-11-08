@@ -44,7 +44,7 @@ class NewsTableViewController: UITableViewController {
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = Bundle.main.loadNibNamed("FeedsTableViewCell", owner: self, options: nil)?.first as! FeedsTableViewCell
         //print(newsDATA[indexPath.row])
-        self.tableView.contentInset = UIEdgeInsets(top: (self.navigationController?.navigationBar.frame.size.height)!+15, left: 0, bottom: 0,right: 0)
+        //self.tableView.contentInset = UIEdgeInsets(top: (self.navigationController?.navigationBar.frame.size.height)!+15, left: 0, bottom: 0,right: 0)
         cell.userAvatar.image = avatarImage(url: newsDATA[indexPath.row]["avatar_url"]!)
         cell.userName.text = newsDATA[indexPath.row]["name"]
         cell.userCommit.text = newsDATA[indexPath.row]["commit"]
