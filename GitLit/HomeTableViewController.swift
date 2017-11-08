@@ -20,8 +20,8 @@ struct userData {
 class HomeTableViewController: UITableViewController{
     var dataCell = [userData]()
     var dataTable = [[String: String]]()
-    let section = ["User", "Repositories"]
     override func viewDidLoad() {
+        self.navigationItem.title = "Login"
         let nameRepo = repoDATA.keys
         dataCell = [userData(
             cell: 1,
@@ -47,7 +47,7 @@ class HomeTableViewController: UITableViewController{
             ))
         }
         //print(dataCell)
-        self.title = authDATA["login"].string!
+        //self.title = authDATA["login"].string!
     }
     func avatarImage(url: String) -> UIImage{
         let imgURL: NSURL = NSURL(string: url)!
@@ -63,7 +63,7 @@ class HomeTableViewController: UITableViewController{
             cell.userAvatar.image = dataCell[indexPath.row].image
             cell.userBio.text = dataCell[indexPath.row].bio
             cell.userName.text = dataCell[indexPath.row].name
-            self.tableView.contentInset = UIEdgeInsets(top: 60, left: 0, bottom: 0,right: 0)
+            self.tableView.contentInset = UIEdgeInsets(top: (self.navigationController?.navigationBar.frame.size.height)!+15, left: 0, bottom: 0,right: 0)
             cell.selectionStyle = UITableViewCellSelectionStyle.none
             return cell
         } else if dataCell[indexPath.row].cell == 2{
@@ -84,7 +84,7 @@ class HomeTableViewController: UITableViewController{
     }
     override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         if dataCell[indexPath.row].cell == 1{
-            return 98
+            return 95
         }else if dataCell[indexPath.row].cell == 3{
             return 36
         }else{
@@ -93,10 +93,5 @@ class HomeTableViewController: UITableViewController{
     }
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         UIApplication.shared.openURL(NSURL(string: dataCell[indexPath.row].url)! as URL)
-    }
-    @IBAction func extBtnPressed(_ sender: Any) {
-        UserDefaults.standard.set(nil, forKey: "token")
-        let AuthVC = self.storyboard?.instantiateViewController(withIdentifier: "AuthVC")
-        self.present(AuthVC!, animated: false)
     }
 }

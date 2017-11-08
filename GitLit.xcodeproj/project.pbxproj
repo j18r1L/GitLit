@@ -7,12 +7,13 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		4D716CD51FB1DC8F009A2372 /* FirstViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D716CD41FB1DC8F009A2372 /* FirstViewController.swift */; };
-		4D716CD71FB1DCFE009A2372 /* SecondViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D716CD61FB1DCFE009A2372 /* SecondViewController.swift */; };
-		4D716CD91FB1DD54009A2372 /* ThirdViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D716CD81FB1DD54009A2372 /* ThirdViewController.swift */; };
 		581DDE871FAB215B008BBD64 /* Handler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 581DDE861FAB215B008BBD64 /* Handler.swift */; };
 		581DDE8A1FAB2835008BBD64 /* RepositoriesTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 581DDE881FAB2835008BBD64 /* RepositoriesTableViewCell.swift */; };
 		581DDE8B1FAB2835008BBD64 /* RepositoriesTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 581DDE891FAB2835008BBD64 /* RepositoriesTableViewCell.xib */; };
+		5822B4BC1FB31C1800FE9AA2 /* FeedsTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5822B4BA1FB31C1800FE9AA2 /* FeedsTableViewCell.swift */; };
+		5822B4BD1FB31C1900FE9AA2 /* FeedsTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5822B4BB1FB31C1800FE9AA2 /* FeedsTableViewCell.xib */; };
+		583ABB241FB2FB060005749C /* TapBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 583ABB231FB2FB060005749C /* TapBarController.swift */; };
+		583ABB261FB2FD460005749C /* NewsTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 583ABB251FB2FD460005749C /* NewsTableViewController.swift */; };
 		584DAB511FA4A8F6003134AD /* AboutUserTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 584DAB4F1FA4A8F6003134AD /* AboutUserTableViewCell.swift */; };
 		584DAB521FA4A8F6003134AD /* AboutUserTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 584DAB501FA4A8F6003134AD /* AboutUserTableViewCell.xib */; };
 		58CF246C1FADCB1A00F5DABE /* HeaderTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 58CF246A1FADCB1A00F5DABE /* HeaderTableViewCell.swift */; };
@@ -56,12 +57,13 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
-		4D716CD41FB1DC8F009A2372 /* FirstViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirstViewController.swift; sourceTree = "<group>"; };
-		4D716CD61FB1DCFE009A2372 /* SecondViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SecondViewController.swift; sourceTree = "<group>"; };
-		4D716CD81FB1DD54009A2372 /* ThirdViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ThirdViewController.swift; sourceTree = "<group>"; };
 		581DDE861FAB215B008BBD64 /* Handler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Handler.swift; sourceTree = "<group>"; };
 		581DDE881FAB2835008BBD64 /* RepositoriesTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RepositoriesTableViewCell.swift; sourceTree = "<group>"; };
 		581DDE891FAB2835008BBD64 /* RepositoriesTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = RepositoriesTableViewCell.xib; sourceTree = "<group>"; };
+		5822B4BA1FB31C1800FE9AA2 /* FeedsTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeedsTableViewCell.swift; sourceTree = "<group>"; };
+		5822B4BB1FB31C1800FE9AA2 /* FeedsTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = FeedsTableViewCell.xib; sourceTree = "<group>"; };
+		583ABB231FB2FB060005749C /* TapBarController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TapBarController.swift; sourceTree = "<group>"; };
+		583ABB251FB2FD460005749C /* NewsTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewsTableViewController.swift; sourceTree = "<group>"; };
 		584DAB4F1FA4A8F6003134AD /* AboutUserTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AboutUserTableViewCell.swift; sourceTree = "<group>"; };
 		584DAB501FA4A8F6003134AD /* AboutUserTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = AboutUserTableViewCell.xib; sourceTree = "<group>"; };
 		58CF246A1FADCB1A00F5DABE /* HeaderTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HeaderTableViewCell.swift; sourceTree = "<group>"; };
@@ -125,10 +127,14 @@
 			isa = PBXGroup;
 			children = (
 				58D5A4011F9BB824008A6AF8 /* AppDelegate.swift */,
+				583ABB231FB2FB060005749C /* TapBarController.swift */,
 				58D5A4281F9BB935008A6AF8 /* AuthViewController.swift */,
 				58D5A4051F9BB824008A6AF8 /* Main.storyboard */,
 				581DDE861FAB215B008BBD64 /* Handler.swift */,
 				58D8FEFC1FA0E5C8006F8773 /* HomeTableViewController.swift */,
+				583ABB251FB2FD460005749C /* NewsTableViewController.swift */,
+				5822B4BA1FB31C1800FE9AA2 /* FeedsTableViewCell.swift */,
+				5822B4BB1FB31C1800FE9AA2 /* FeedsTableViewCell.xib */,
 				58CF246A1FADCB1A00F5DABE /* HeaderTableViewCell.swift */,
 				58CF246B1FADCB1A00F5DABE /* HeaderTableViewCell.xib */,
 				581DDE881FAB2835008BBD64 /* RepositoriesTableViewCell.swift */,
@@ -138,9 +144,6 @@
 				58D5A4081F9BB824008A6AF8 /* Assets.xcassets */,
 				58D5A40A1F9BB824008A6AF8 /* LaunchScreen.storyboard */,
 				58D5A40D1F9BB824008A6AF8 /* Info.plist */,
-				4D716CD41FB1DC8F009A2372 /* FirstViewController.swift */,
-				4D716CD61FB1DCFE009A2372 /* SecondViewController.swift */,
-				4D716CD81FB1DD54009A2372 /* ThirdViewController.swift */,
 			);
 			path = GitLit;
 			sourceTree = "<group>";
@@ -239,6 +242,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				584DAB521FA4A8F6003134AD /* AboutUserTableViewCell.xib in Resources */,
+				5822B4BD1FB31C1900FE9AA2 /* FeedsTableViewCell.xib in Resources */,
 				581DDE8B1FAB2835008BBD64 /* RepositoriesTableViewCell.xib in Resources */,
 				58D5A40C1F9BB824008A6AF8 /* LaunchScreen.storyboard in Resources */,
 				58D5A4091F9BB824008A6AF8 /* Assets.xcassets in Resources */,
@@ -263,14 +267,14 @@
 			files = (
 				581DDE871FAB215B008BBD64 /* Handler.swift in Sources */,
 				584DAB511FA4A8F6003134AD /* AboutUserTableViewCell.swift in Sources */,
-				4D716CD91FB1DD54009A2372 /* ThirdViewController.swift in Sources */,
+				5822B4BC1FB31C1800FE9AA2 /* FeedsTableViewCell.swift in Sources */,
 				58D8FEFD1FA0E5C8006F8773 /* HomeTableViewController.swift in Sources */,
-				4D716CD71FB1DCFE009A2372 /* SecondViewController.swift in Sources */,
-				4D716CD51FB1DC8F009A2372 /* FirstViewController.swift in Sources */,
 				58CF246C1FADCB1A00F5DABE /* HeaderTableViewCell.swift in Sources */,
 				58D5A4291F9BB935008A6AF8 /* AuthViewController.swift in Sources */,
 				58D5A4021F9BB824008A6AF8 /* AppDelegate.swift in Sources */,
 				581DDE8A1FAB2835008BBD64 /* RepositoriesTableViewCell.swift in Sources */,
+				583ABB241FB2FB060005749C /* TapBarController.swift in Sources */,
+				583ABB261FB2FD460005749C /* NewsTableViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
