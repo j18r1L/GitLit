@@ -15,5 +15,7 @@ class FeedsTableViewCell: UITableViewCell {
     @IBOutlet weak var userRepo: UILabel!
     @IBOutlet weak var userCommit: UILabel!
     @IBOutlet weak var commitTime: UILabel!
-
+    @IBOutlet weak var userAction: UILabel!
+    @IBOutlet weak var cellView: UIView!
+    
 }

@@ -61,9 +61,11 @@ class HomeTableViewController: UITableViewController{
         if dataCell[indexPath.row].cell == 1{
             let cell = Bundle.main.loadNibNamed("AboutUserTableViewCell", owner: self, options: nil)?.first as! AboutUserTableViewCell
             cell.userAvatar.image = dataCell[indexPath.row].image
+            cell.userAvatar.clipsToBounds = true
+            cell.userAvatar.layer.cornerRadius = cell.userAvatar.frame.height / 2
             cell.userBio.text = dataCell[indexPath.row].bio
             cell.userName.text = dataCell[indexPath.row].name
-            //self.tableView.contentInset = UIEdgeInsets(top: (self.navigationController?.navigationBar.frame.size.height)!+15, left: 0, bottom: 0,right: 0)
+            self.tableView.contentInset = UIEdgeInsets(top: (self.navigationController?.navigationBar.frame.size.height)!+15, left: 0, bottom: 0,right: 0)
             cell.selectionStyle = UITableViewCellSelectionStyle.none
             return cell
         } else if dataCell[indexPath.row].cell == 2{
@@ -92,6 +94,8 @@ class HomeTableViewController: UITableViewController{
         }
     }
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        UIApplication.shared.openURL(NSURL(string: dataCell[indexPath.row].url)! as URL)
+        if dataCell[indexPath.row].cell == 2{
+            UIApplication.shared.openURL(NSURL(string: dataCell[indexPath.row].url)! as URL)
+        }
     }
 }

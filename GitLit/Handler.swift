@@ -55,24 +55,36 @@ class Handler: UIViewController {
             }
             for user in followers{
                 Alamofire.request("https://api.github.com/users/"+user+"/events", headers: headers).responseJSON{(response) -> Void in
-                    for ind in 0...3{
+                    for ind in 0...7{
                         let json = JSON(response.result.value!)[ind]
                         var time = json["created_at"].string!
                         time = time[..<time.index(time.startIndex, offsetBy: 10)] + " " + time[time.index(time.startIndex, offsetBy: 11) ..< time.index(time.endIndex, offsetBy: -1)]
-                        if json["payload"]["commits"][0]["message"].string != nil{
+                        //print(json)
+                        if json["payload"]["commits"][0]["message"].string != nil && json["payload"]["action"].string != nil{
                             newsDATA.append([
                                 "name": user,
                                 "repo": json["repo"]["name"].string!,
                                 "commit": json["payload"]["commits"][0]["message"].string!,
                                 "avatar_url": json["actor"]["avatar_url"].string!,
+                                "action": json["payload"]["action"].string!,
                                 "time": time
                                 ])
-                        } else {
+                        } else if json["payload"]["commits"][0]["message"].string != nil{
+                            newsDATA.append([
+                                "name": user,
+                                "repo": json["repo"]["name"].string!,
+                                "commit": json["payload"]["commits"][0]["message"].string!,
+                                "avatar_url": json["actor"]["avatar_url"].string!,
+                                "action": "",
+                                "time": time
+                                ])
+                        } else if json["payload"]["action"].string != nil{
                             newsDATA.append([
                                 "name": user,
                                 "repo": json["repo"]["name"].string!,
                                 "commit": "",
                                 "avatar_url": json["actor"]["avatar_url"].string!,
+                                "action": json["payload"]["action"].string!,
                                 "time": time
                                 ])
                         }

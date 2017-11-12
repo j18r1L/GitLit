@@ -51,6 +51,6 @@ ISSUES
 PROFILE SETTINGS
 Возмодно изменять картинку профиля, статус, место работы (обучения)
 
-<h3>Gif</h3>
-<img src="gitlit.gif" width="300"><img src="Profile.png" width="300"><img src="News.png" width="300">
+<h3>Screenshots</h3>
+<img src="Profile.png" width="300"><img src="News.png" width="300"><img src="Login.png" width="300">
 
