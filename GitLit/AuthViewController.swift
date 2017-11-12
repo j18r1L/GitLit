@@ -37,10 +37,13 @@ class AuthViewController: UIViewController {
             if jsonResp["message"] == "Bad credentials"{
                 self.infoLabel.text = "Incorrect username or password."
             } else {
-                let homeVC = self.storyboard?.instantiateViewController(withIdentifier: "homeVC")
+                let homeVC = self.storyboard?.instantiateViewController(withIdentifier: "Handler")
                 UserDefaults.standard.set(token, forKey: "token")
                 self.present(homeVC!, animated: false)
             }
         }
+    }
+    @IBAction func tapedAnyWay(_ sender: Any) {
+        view.endEditing(true)
     }
 }
