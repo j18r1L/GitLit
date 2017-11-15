@@ -21,15 +21,38 @@ class HomeTableViewController: UITableViewController{
     var dataCell = [userData]()
     var dataTable = [[String: String]]()
     override func viewDidLoad() {
+        func avatarImage(url: String) -> UIImage{
+            let imgURL: NSURL = NSURL(string: url)!
+            let imgData = NSData(contentsOf: imgURL as URL)
+            return UIImage(data: imgData! as Data)!
+        }
         self.navigationItem.title = "Login"
         let nameRepo = repoDATA.keys
-        dataCell = [userData(
-            cell: 1,
-            name: authDATA["name"].string!,
-            bio: authDATA["bio"].string!,
-            image: avatarImage(url: authDATA["avatar_url"].string!),
-            url: nil
-        )]
+        if authDATA["bio"].string == nil && authDATA["name"].string == nil{
+            dataCell = [userData(
+                cell: 1,
+                name: "",
+                bio: "",
+                image: avatarImage(url: authDATA["avatar_url"].string!),
+                url: nil
+            )]
+        } else if authDATA["name"].string == nil{
+            dataCell = [userData(
+                cell: 1,
+                name: "",
+                bio: authDATA["bio"].string!,
+                image: avatarImage(url: authDATA["avatar_url"].string!),
+                url: nil
+            )]
+        } else {
+            dataCell = [userData(
+                cell: 1,
+                name: authDATA["name"].string!,
+                bio: "",
+                image: avatarImage(url: authDATA["avatar_url"].string!),
+                url: nil
+            )]
+        }
         dataCell.append(userData(
             cell: 3,
             name: "Repositories",
@@ -46,13 +69,9 @@ class HomeTableViewController: UITableViewController{
                 url: repoDATA[namE]
             ))
         }
-        //print(dataCell)
+        //print(repoDATA)
+        //print(newsDATA)
         //self.title = authDATA["login"].string!
-    }
-    func avatarImage(url: String) -> UIImage{
-        let imgURL: NSURL = NSURL(string: url)!
-        let imgData = NSData(contentsOf: imgURL as URL)
-        return UIImage(data: imgData! as Data)!
     }
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return dataCell.count
@@ -65,7 +84,6 @@ class HomeTableViewController: UITableViewController{
             cell.userAvatar.layer.cornerRadius = cell.userAvatar.frame.height / 2
             cell.userBio.text = dataCell[indexPath.row].bio
             cell.userName.text = dataCell[indexPath.row].name
-            self.tableView.contentInset = UIEdgeInsets(top: (self.navigationController?.navigationBar.frame.size.height)!+15, left: 0, bottom: 0,right: 0)
             cell.selectionStyle = UITableViewCellSelectionStyle.none
             return cell
         } else if dataCell[indexPath.row].cell == 2{
@@ -93,9 +111,10 @@ class HomeTableViewController: UITableViewController{
             return 45
         }
     }
+    var index = 0
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         if dataCell[indexPath.row].cell == 2{
-            UIApplication.shared.openURL(NSURL(string: dataCell[indexPath.row].url)! as URL)
+            tabBarController?.selectedIndex = 2
         }
     }
 }
