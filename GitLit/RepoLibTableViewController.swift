@@ -7,17 +7,45 @@
 //
 
 import UIKit
-
+import Alamofire
+import SwiftyJSON
 class RepoLibTableViewController: UITableViewController {
-
+    var repo = ""
+    func getDataForBranch(url: JSON, name: String, dir: String){
+        let headers = [
+            "Authorization" : "Basic " + UserDefaults.standard.string(forKey: "token")!
+        ]
+        if url["download_url"] != nil{
+            let dataPath = NSSearchPathForDirectoriesInDomains(.documentDirectory, .userDomainMask, true)[0]
+            let repoDir = dataPath + "/" + repo + "/" + dir
+            var objCtBool:ObjCBool = true
+            let isExit = FileManager.default.fileExists(atPath: repoDir, isDirectory: &objCtBool)
+            if isExit == false{
+                do{
+                    try FileManager.default.createDirectory(atPath: repoDir, withIntermediateDirectories: true, attributes: nil)
+                }catch
+                {
+                    print("error create directory")
+                }
+            }
+            let destination: DownloadRequest.DownloadFileDestination = { _, _ in
+                var documentsURL = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask)[0]
+                documentsURL.appendPathComponent(self.repo + "/" + dir + "/" + name)
+                return (documentsURL, [.removePreviousFile])
+            }
+            Alamofire.download(url["download_url"].string!, method: .get, encoding: JSONEncoding.default, headers: headers, to: destination)
+        } else {
+            let dir = dir + "/" + name
+            Alamofire.request(url["url"].string!, headers: headers).responseJSON{(response) -> Void in
+                let data = JSON(response.result.value!)
+                for ind in 0...data.count-1{
+                    self.getDataForBranch(url: data[ind], name: data[ind]["name"].string!, dir: dir)
+                }
+            }
+        }
+    }
     override func viewDidLoad() {
         super.viewDidLoad()
-        //print(authDATA)
-        // Uncomment the following line to preserve selection between presentations
-        // self.clearsSelectionOnViewWillAppear = false
-
-        // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
-        // self.navigationItem.rightBarButtonItem = self.editButtonItem
     }
 
     override func didReceiveMemoryWarning() {
@@ -28,7 +56,7 @@ class RepoLibTableViewController: UITableViewController {
         // #warning Incomplete implementation, return the number of rows
         return branches.count
     }
-
+    
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = Bundle.main.loadNibNamed("RepositoriesTableViewCell", owner: self, options: nil)?.first as! RepositoriesTableViewCell
         cell.repoName.text = branches[indexPath.row]
@@ -42,7 +70,36 @@ class RepoLibTableViewController: UITableViewController {
         return true
     }
     */
-
+    var index = 0
+    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        index = indexPath.row
+        let headers = [
+            "Authorization" : "Basic " + UserDefaults.standard.string(forKey: "token")!
+        ]
+        let param = ["ref": branches[indexPath.row]]
+        Alamofire.request("https://api.github.com/repos/" + repo + "/contents",parameters: param, headers: headers).responseJSON{(response) -> Void in
+            let data = JSON(response.result.value!)
+            //print(data)
+            for ind in 0...data.count-1{
+                self.getDataForBranch(url: data[ind], name: data[ind]["name"].string!, dir: branches[indexPath.row])
+            }
+            self.performSegue(withIdentifier: "GoToBranch", sender: nil)
+        }
+        /*do {
+            let items = try FileManager.default.contentsOfDirectory(atPath: NSSearchPathForDirectoriesInDomains(.documentDirectory, .userDomainMask, true)[0])
+            
+            for item in items {
+                print("Found \(item)")
+            }
+        } catch {
+            // failed to read directory – bad permissions, perhaps?
+        }*/
+    }
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?){
+        let branchVC: BranchTableViewController = (segue.destination as? BranchTableViewController)!
+        branchVC.directory = repo + "/" + branches[index]
+        branchVC.title = branches[index]
+    }
     /*
     // Override to support editing the table view.
     override func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCellEditingStyle, forRowAt indexPath: IndexPath) {

@@ -125,8 +125,8 @@
                             <outlet property="delegate" destination="pSP-Af-XYA" id="pp5-ob-Y0b"/>
                         </connections>
                     </tableView>
-                    <tabBarItem key="tabBarItem" title="" image="profile" selectedImage="profile" id="010-m9-YDB">
-                        <inset key="imageInsets" minX="5" minY="10" maxX="5" maxY="-5"/>
+                    <tabBarItem key="tabBarItem" title="" image="profile" landscapeImage="profile" largeContentSizeImage="preview" selectedImage="profile" springLoaded="YES" id="010-m9-YDB">
+                        <offsetWrapper key="titlePositionAdjustment" horizontal="0.0" vertical="0.0"/>
                     </tabBarItem>
                     <navigationItem key="navigationItem" title="emilastanov" id="6Ta-Db-bby"/>
                 </tableViewController>
@@ -185,6 +185,7 @@
             <objects>
                 <tabBarController id="xiz-uk-s3T" customClass="TapBarController" customModule="GitLit" customModuleProvider="target" sceneMemberID="viewController">
                     <navigationItem key="navigationItem" id="e5p-On-s11">
+                        <barButtonItem key="backBarButtonItem" title=" " id="eiP-L1-yjY"/>
                         <barButtonItem key="rightBarButtonItem" systemItem="stop" id="HFw-Ix-Vuk">
                             <connections>
                                 <action selector="extBtnPressed:" destination="xiz-uk-s3T" id="hWQ-rP-WMS"/>
@@ -231,15 +232,13 @@
                             <outlet property="delegate" destination="N8y-6f-CtU" id="J1q-K0-H8C"/>
                         </connections>
                     </tableView>
-                    <tabBarItem key="tabBarItem" title="" image="news" selectedImage="news" id="W7V-dN-IWv">
-                        <inset key="imageInsets" minX="5" minY="10" maxX="5" maxY="-5"/>
-                    </tabBarItem>
+                    <tabBarItem key="tabBarItem" title="" image="news" landscapeImage="news" largeContentSizeImage="news" selectedImage="news" id="W7V-dN-IWv"/>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="H31-GD-0fU" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="3228" y="572"/>
         </scene>
-        <!--Repo Table View Controller-->
+        <!--Title-->
         <scene sceneID="Cwf-sd-nXW">
             <objects>
                 <tableViewController id="oIg-Fh-vBN" customClass="RepoTableViewController" customModule="GitLit" customModuleProvider="target" sceneMemberID="viewController">
@@ -262,9 +261,10 @@
                             <outlet property="delegate" destination="oIg-Fh-vBN" id="kaG-KE-dBV"/>
                         </connections>
                     </tableView>
-                    <tabBarItem key="tabBarItem" title="" image="repo" selectedImage="repo" id="kBS-xz-SX8">
-                        <inset key="imageInsets" minX="5" minY="10" maxX="5" maxY="-5"/>
-                    </tabBarItem>
+                    <tabBarItem key="tabBarItem" title="" image="repo" landscapeImage="repo" largeContentSizeImage="repo" selectedImage="repo" id="kBS-xz-SX8"/>
+                    <navigationItem key="navigationItem" title="Title" id="4A6-cK-DjF">
+                        <barButtonItem key="backBarButtonItem" title=" " id="1Wc-Xw-NuD"/>
+                    </navigationItem>
                     <connections>
                         <segue destination="vlp-FD-GXo" kind="show" identifier="GoToRepo" id="is7-Xc-Qat"/>
                     </connections>
@@ -296,17 +296,50 @@
                             <outlet property="delegate" destination="vlp-FD-GXo" id="NBi-u8-QL9"/>
                         </connections>
                     </tableView>
-                    <navigationItem key="navigationItem" title="Title" id="3Kz-Wi-54Q"/>
+                    <navigationItem key="navigationItem" title="Title" id="3Kz-Wi-54Q">
+                        <barButtonItem key="backBarButtonItem" title=" " id="wfi-aj-zsU"/>
+                    </navigationItem>
+                    <connections>
+                        <segue destination="lsD-nw-4ca" kind="show" identifier="GoToBranch" id="zes-2g-lxh"/>
+                    </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Oi3-V9-Qvj" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="4887" y="134"/>
         </scene>
+        <!--Branch Table View Controller-->
+        <scene sceneID="MmC-68-3eo">
+            <objects>
+                <tableViewController id="lsD-nw-4ca" customClass="BranchTableViewController" customModule="GitLit" customModuleProvider="target" sceneMemberID="viewController">
+                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" id="28E-Tv-ylS">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="603"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <prototypes>
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" id="vdv-TZ-ssT">
+                                <rect key="frame" x="0.0" y="28" width="375" height="44"/>
+                                <autoresizingMask key="autoresizingMask"/>
+                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="vdv-TZ-ssT" id="3aF-s3-SVa">
+                                    <rect key="frame" x="0.0" y="0.0" width="375" height="43.5"/>
+                                    <autoresizingMask key="autoresizingMask"/>
+                                </tableViewCellContentView>
+                            </tableViewCell>
+                        </prototypes>
+                        <connections>
+                            <outlet property="dataSource" destination="lsD-nw-4ca" id="a0x-6d-0vH"/>
+                            <outlet property="delegate" destination="lsD-nw-4ca" id="jdy-TH-IGp"/>
+                        </connections>
+                    </tableView>
+                </tableViewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="ihF-Tv-cfc" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="5683" y="137"/>
+        </scene>
     </scenes>
     <resources>
-        <image name="news" width="50" height="50"/>
+        <image name="news" width="25" height="25"/>
         <image name="preview" width="250" height="125"/>
-        <image name="profile" width="50" height="50"/>
-        <image name="repo" width="50" height="50"/>
+        <image name="profile" width="25" height="25"/>
+        <image name="repo" width="25" height="25"/>
     </resources>
 </document>

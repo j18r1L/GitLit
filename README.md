@@ -52,5 +52,5 @@ PROFILE SETTINGS
 Возмодно изменять картинку профиля, статус, место работы (обучения)
 
 <h3>Screenshots</h3>
-<img src="Profile.png" width="200"><img src="News.png" width="200"><img src="Login.png" width="200"><img src="Repos.png" width="200"><img src="Branchs.png" width="200">
+<img src="Profile.png" width="200"><img src="News.png" width="200"><img src="Login.png" width="200"><img src="Repos.png" width="200"><img src="Branchs.png" width="200"><img src="Branch.png" width="200">
 

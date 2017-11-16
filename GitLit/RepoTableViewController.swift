@@ -59,5 +59,6 @@ class RepoTableViewController: UITableViewController {
     override func prepare(for segue: UIStoryboardSegue, sender: Any?){
         let repoVC: RepoLibTableViewController = (segue.destination as? RepoLibTableViewController)!
         repoVC.title = dataCell[index].name
+        repoVC.repo = dataCell[index].name
     }
 }
