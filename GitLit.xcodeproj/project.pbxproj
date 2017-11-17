@@ -18,7 +18,9 @@
 		584DAB521FA4A8F6003134AD /* AboutUserTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 584DAB501FA4A8F6003134AD /* AboutUserTableViewCell.xib */; };
 		5878648E1FBDDB110091349E /* BranchTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5878648D1FBDDB110091349E /* BranchTableViewController.swift */; };
 		5885D82E1FBB51D800AE75C2 /* RepoTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5885D82D1FBB51D800AE75C2 /* RepoTableViewController.swift */; };
-		5885D8321FBB58EB00AE75C2 /* RepoTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5885D8301FBB58EB00AE75C2 /* RepoTableViewCell.xib */; };
+		58C7A1BE1FBF2B2A00A1F550 /* TextViewerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 58C7A1BD1FBF2B2A00A1F550 /* TextViewerViewController.swift */; };
+		58C7A1C31FBF484900A1F550 /* DirTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 58C7A1C11FBF484900A1F550 /* DirTableViewCell.swift */; };
+		58C7A1C41FBF484900A1F550 /* DirTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 58C7A1C21FBF484900A1F550 /* DirTableViewCell.xib */; };
 		58CB74411FBB3BB400325734 /* Media.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 58CB74401FBB3BB400325734 /* Media.xcassets */; };
 		58CCCC721FBC149500A152B6 /* RepoLibTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 58CCCC711FBC149500A152B6 /* RepoLibTableViewController.swift */; };
 		58CF246C1FADCB1A00F5DABE /* HeaderTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 58CF246A1FADCB1A00F5DABE /* HeaderTableViewCell.swift */; };
@@ -72,7 +74,9 @@
 		584DAB501FA4A8F6003134AD /* AboutUserTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = AboutUserTableViewCell.xib; sourceTree = "<group>"; };
 		5878648D1FBDDB110091349E /* BranchTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BranchTableViewController.swift; sourceTree = "<group>"; };
 		5885D82D1FBB51D800AE75C2 /* RepoTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RepoTableViewController.swift; sourceTree = "<group>"; };
-		5885D8301FBB58EB00AE75C2 /* RepoTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = RepoTableViewCell.xib; sourceTree = "<group>"; };
+		58C7A1BD1FBF2B2A00A1F550 /* TextViewerViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TextViewerViewController.swift; sourceTree = "<group>"; };
+		58C7A1C11FBF484900A1F550 /* DirTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DirTableViewCell.swift; sourceTree = "<group>"; };
+		58C7A1C21FBF484900A1F550 /* DirTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = DirTableViewCell.xib; sourceTree = "<group>"; };
 		58CB74401FBB3BB400325734 /* Media.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Media.xcassets; sourceTree = "<group>"; };
 		58CCCC711FBC149500A152B6 /* RepoLibTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RepoLibTableViewController.swift; sourceTree = "<group>"; };
 		58CF246A1FADCB1A00F5DABE /* HeaderTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HeaderTableViewCell.swift; sourceTree = "<group>"; };
@@ -141,10 +145,12 @@
 				583ABB231FB2FB060005749C /* TapBarController.swift */,
 				58D5A4281F9BB935008A6AF8 /* AuthViewController.swift */,
 				58D5A4051F9BB824008A6AF8 /* Main.storyboard */,
-				5885D8301FBB58EB00AE75C2 /* RepoTableViewCell.xib */,
+				58C7A1BD1FBF2B2A00A1F550 /* TextViewerViewController.swift */,
 				581DDE861FAB215B008BBD64 /* Handler.swift */,
 				58D8FEFC1FA0E5C8006F8773 /* HomeTableViewController.swift */,
 				5885D82D1FBB51D800AE75C2 /* RepoTableViewController.swift */,
+				58C7A1C11FBF484900A1F550 /* DirTableViewCell.swift */,
+				58C7A1C21FBF484900A1F550 /* DirTableViewCell.xib */,
 				583ABB251FB2FD460005749C /* NewsTableViewController.swift */,
 				5822B4BA1FB31C1800FE9AA2 /* FeedsTableViewCell.swift */,
 				5822B4BB1FB31C1800FE9AA2 /* FeedsTableViewCell.xib */,
@@ -260,7 +266,7 @@
 				58D5A40C1F9BB824008A6AF8 /* LaunchScreen.storyboard in Resources */,
 				58CF246D1FADCB1A00F5DABE /* HeaderTableViewCell.xib in Resources */,
 				58D5A4071F9BB824008A6AF8 /* Main.storyboard in Resources */,
-				5885D8321FBB58EB00AE75C2 /* RepoTableViewCell.xib in Resources */,
+				58C7A1C41FBF484900A1F550 /* DirTableViewCell.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -283,6 +289,7 @@
 				58CCCC721FBC149500A152B6 /* RepoLibTableViewController.swift in Sources */,
 				5878648E1FBDDB110091349E /* BranchTableViewController.swift in Sources */,
 				584DAB511FA4A8F6003134AD /* AboutUserTableViewCell.swift in Sources */,
+				58C7A1BE1FBF2B2A00A1F550 /* TextViewerViewController.swift in Sources */,
 				5822B4BC1FB31C1800FE9AA2 /* FeedsTableViewCell.swift in Sources */,
 				58D8FEFD1FA0E5C8006F8773 /* HomeTableViewController.swift in Sources */,
 				58CF246C1FADCB1A00F5DABE /* HeaderTableViewCell.swift in Sources */,
@@ -291,6 +298,7 @@
 				581DDE8A1FAB2835008BBD64 /* RepositoriesTableViewCell.swift in Sources */,
 				583ABB241FB2FB060005749C /* TapBarController.swift in Sources */,
 				583ABB261FB2FD460005749C /* NewsTableViewController.swift in Sources */,
+				58C7A1C31FBF484900A1F550 /* DirTableViewCell.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

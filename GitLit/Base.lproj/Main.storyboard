@@ -100,7 +100,7 @@
         <!--emilastanov-->
         <scene sceneID="Cxv-sr-iUs">
             <objects>
-                <tableViewController id="pSP-Af-XYA" customClass="HomeTableViewController" customModule="GitLit" customModuleProvider="target" sceneMemberID="viewController">
+                <tableViewController storyboardIdentifier="General" id="pSP-Af-XYA" customClass="HomeTableViewController" customModule="GitLit" customModuleProvider="target" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" id="bxA-o2-PKp">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="554"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -298,19 +298,24 @@
                     </tableView>
                     <navigationItem key="navigationItem" title="Title" id="3Kz-Wi-54Q">
                         <barButtonItem key="backBarButtonItem" title=" " id="wfi-aj-zsU"/>
+                        <barButtonItem key="leftBarButtonItem" image="back" width="50" id="mYZ-vi-bcR">
+                            <connections>
+                                <action selector="backBtnPressed:" destination="vlp-FD-GXo" id="Hhc-ae-hni"/>
+                            </connections>
+                        </barButtonItem>
                     </navigationItem>
                     <connections>
-                        <segue destination="lsD-nw-4ca" kind="show" identifier="GoToBranch" id="zes-2g-lxh"/>
+                        <segue destination="lsD-nw-4ca" kind="show" identifier="GoToBranch" id="wL3-ug-bnJ"/>
                     </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Oi3-V9-Qvj" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="4887" y="134"/>
         </scene>
-        <!--Branch Table View Controller-->
+        <!--Title-->
         <scene sceneID="MmC-68-3eo">
             <objects>
-                <tableViewController id="lsD-nw-4ca" customClass="BranchTableViewController" customModule="GitLit" customModuleProvider="target" sceneMemberID="viewController">
+                <tableViewController storyboardIdentifier="FileHierarchy" id="lsD-nw-4ca" customClass="BranchTableViewController" customModule="GitLit" customModuleProvider="target" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" id="28E-Tv-ylS">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="603"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -330,13 +335,65 @@
                             <outlet property="delegate" destination="lsD-nw-4ca" id="jdy-TH-IGp"/>
                         </connections>
                     </tableView>
+                    <navigationItem key="navigationItem" title="Title" id="McG-ee-dzW">
+                        <barButtonItem key="backBarButtonItem" title=" " id="u4a-ve-wmi"/>
+                        <barButtonItem key="leftBarButtonItem" image="back" width="50" id="LNX-KP-4Qa">
+                            <connections>
+                                <action selector="backBtnPressed:" destination="lsD-nw-4ca" id="RL5-mJ-orX"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
+                    <connections>
+                        <segue destination="7if-ke-20c" kind="show" identifier="GoToText" id="cY4-s9-yl5"/>
+                    </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="ihF-Tv-cfc" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="5683" y="137"/>
+            <point key="canvasLocation" x="4886" y="910"/>
+        </scene>
+        <!--Title-->
+        <scene sceneID="qPy-le-Nef">
+            <objects>
+                <viewController id="7if-ke-20c" customClass="TextViewerViewController" customModule="GitLit" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="Lhi-cr-3bY">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="603"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" editable="NO" text="1. " translatesAutoresizingMaskIntoConstraints="NO" id="jV6-ql-krJ">
+                                <rect key="frame" x="0.0" y="0.0" width="41" height="603"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <color key="backgroundColor" red="0.40000000600000002" green="0.40000000600000002" blue="0.40000000600000002" alpha="1" colorSpace="calibratedRGB"/>
+                                <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="16"/>
+                                <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="boolean" keyPath="showsHorizontalScrollIndicator" value="NO"/>
+                                </userDefinedRuntimeAttributes>
+                            </textView>
+                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" editable="NO" text="Text" translatesAutoresizingMaskIntoConstraints="NO" id="bWE-eL-ibR">
+                                <rect key="frame" x="43" y="0.0" width="332" height="603"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="16"/>
+                                <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
+                            </textView>
+                        </subviews>
+                        <color key="backgroundColor" red="0.90196079019999997" green="0.90196079019999997" blue="0.90196079019999997" alpha="1" colorSpace="calibratedRGB"/>
+                        <viewLayoutGuide key="safeArea" id="LHB-XB-PNK"/>
+                    </view>
+                    <navigationItem key="navigationItem" title="Title" id="ugp-kx-PIZ"/>
+                    <connections>
+                        <outlet property="generalPanel" destination="bWE-eL-ibR" id="40s-W3-3Bh"/>
+                        <outlet property="leftPanel" destination="jV6-ql-krJ" id="6br-FQ-wWr"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="lj3-2P-Rk8" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="5858" y="910"/>
         </scene>
     </scenes>
     <resources>
+        <image name="back" width="64" height="64"/>
         <image name="news" width="25" height="25"/>
         <image name="preview" width="250" height="125"/>
         <image name="profile" width="25" height="25"/>

@@ -9,14 +9,25 @@
 import UIKit
 import Alamofire
 import SwiftyJSON
+enum FileType {
+    case dir
+    case file
+}
+struct File{
+    var type: FileType
+    var name: String
+    var url: String
+}
+var filehierarchy = [File]()
 class RepoLibTableViewController: UITableViewController {
     var repo = ""
     func getDataForBranch(url: JSON, name: String, dir: String){
-        let headers = [
+        /*let headers = [
             "Authorization" : "Basic " + UserDefaults.standard.string(forKey: "token")!
-        ]
+        ]*/
         if url["download_url"] != nil{
-            let dataPath = NSSearchPathForDirectoriesInDomains(.documentDirectory, .userDomainMask, true)[0]
+            filehierarchy.append(File(type: .file, name: name, url: url["download_url"].string!))
+            /*let dataPath = NSSearchPathForDirectoriesInDomains(.documentDirectory, .userDomainMask, true)[0]
             let repoDir = dataPath + "/" + repo + "/" + dir
             var objCtBool:ObjCBool = true
             let isExit = FileManager.default.fileExists(atPath: repoDir, isDirectory: &objCtBool)
@@ -33,19 +44,21 @@ class RepoLibTableViewController: UITableViewController {
                 documentsURL.appendPathComponent(self.repo + "/" + dir + "/" + name)
                 return (documentsURL, [.removePreviousFile])
             }
-            Alamofire.download(url["download_url"].string!, method: .get, encoding: JSONEncoding.default, headers: headers, to: destination)
+            Alamofire.download(url["download_url"].string!, method: .get, encoding: JSONEncoding.default, headers: headers, to: destination)*/
         } else {
-            let dir = dir + "/" + name
+            filehierarchy.append(File(type: .dir, name: name, url: url["url"].string!))
+            /*let dir = dir + "/" + name
             Alamofire.request(url["url"].string!, headers: headers).responseJSON{(response) -> Void in
                 let data = JSON(response.result.value!)
                 for ind in 0...data.count-1{
                     self.getDataForBranch(url: data[ind], name: data[ind]["name"].string!, dir: dir)
                 }
-            }
+            }*/
         }
     }
     override func viewDidLoad() {
         super.viewDidLoad()
+
     }
 
     override func didReceiveMemoryWarning() {
@@ -72,6 +85,7 @@ class RepoLibTableViewController: UITableViewController {
     */
     var index = 0
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        filehierarchy = [File]()
         index = indexPath.row
         let headers = [
             "Authorization" : "Basic " + UserDefaults.standard.string(forKey: "token")!
@@ -99,6 +113,12 @@ class RepoLibTableViewController: UITableViewController {
         let branchVC: BranchTableViewController = (segue.destination as? BranchTableViewController)!
         branchVC.directory = repo + "/" + branches[index]
         branchVC.title = branches[index]
+    }
+    
+    @IBAction func backBtnPressed(_ sender: Any) {
+        filehierarchy = [File]()
+        backFileHierarchy = [File]()
+        self.navigationController?.popViewController(animated: true)
     }
     /*
     // Override to support editing the table view.

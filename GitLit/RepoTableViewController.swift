@@ -17,7 +17,6 @@ class RepoTableViewController: UITableViewController {
         let nameRepo = repoDATA.keys
         for namE in nameRepo{
             dataCell.append(userData(
-                cell: 2,
                 name: namE,
                 bio: "",
                 image: nil,
