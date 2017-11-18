@@ -13,13 +13,10 @@ var authDATA = JSON("")
 var repoDATA = [String: String]()
 var newsDATA = [[String: String]]()
 class Handler: UIViewController {
+    @IBOutlet weak var previewGif: UIImageView!
     override func viewDidLoad() {
         super.viewDidLoad()
-        repoData()
         userData()
-        newsData()
-        
-        sleep(UInt32(0.4))
         // Do any additional setup after loading the view.
     }
     func userData(){
@@ -28,26 +25,26 @@ class Handler: UIViewController {
         ]
         Alamofire.request("https://api.github.com/user", headers: headers).responseJSON{(response) -> Void in
             authDATA = JSON(response.result.value!)
-            let homeVC = self.storyboard?.instantiateViewController(withIdentifier: "homeVC")
-            self.present(homeVC!, animated: false)
+            self.repoData(login: authDATA["login"].string!)
         }
     }
-    func repoData(){
+    func repoData(login: String){
         let headers = [
             "Authorization" : "Basic " + UserDefaults.standard.string(forKey: "token")!
         ]
-        Alamofire.request("https://api.github.com/users/emilastanov/repos", headers: headers).responseJSON{(response) -> Void in
+        Alamofire.request("https://api.github.com/users/" + login + "/repos", headers: headers).responseJSON{(response) -> Void in
             let json = JSON(response.result.value!)
             for index in 0...(json.count-1){
-                repoDATA[json[index]["full_name"].string!] = json[index]["html_url"].string! //replace "html_url" "url"
+                repoDATA[json[index]["full_name"].string!] = json[index]["url"].string!
             }
+            self.newsData(login: login)
         }
     }
-    func newsData(){
+    func newsData(login: String){
         let headers = [
             "Authorization" : "Basic " + UserDefaults.standard.string(forKey: "token")!
         ]
-        Alamofire.request("https://api.github.com/users/emilastanov/following", headers: headers).responseJSON{(response) -> Void in
+        Alamofire.request("https://api.github.com/users/" + login + "/following", headers: headers).responseJSON{(response) -> Void in
             let json = JSON(response.result.value!)
             var followers = [String]()
             for index in 0...(json.count - 1){
@@ -91,6 +88,8 @@ class Handler: UIViewController {
                     }
                 }
             }
+            let homeVC = self.storyboard?.instantiateViewController(withIdentifier: "homeVC")
+            self.present(homeVC!, animated: false)
         }
     }
 }

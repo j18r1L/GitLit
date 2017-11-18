@@ -10,92 +10,113 @@ import UIKit
 import Alamofire
 import SwiftyJSON
 struct userData {
-    let cell : Int!
     let name : String!
     let bio : String!
     let image : UIImage!
     let url: String!
 }
-
+private enum SectionType {
+    case Account
+    case Repos
+}
+private enum Item {
+    case User
+    case Repo
+}
+private struct Section {
+    var type: SectionType
+    var items: [Item]
+    var data: [String: String]
+}
 class HomeTableViewController: UITableViewController{
+    private var sections = [Section]()
     var dataCell = [userData]()
-    var dataTable = [[String: String]]()
-    override func viewDidLoad() {
-        self.navigationItem.title = "Login"
-        let nameRepo = repoDATA.keys
-        dataCell = [userData(
-            cell: 1,
-            name: authDATA["name"].string!,
-            bio: authDATA["bio"].string!,
-            image: avatarImage(url: authDATA["avatar_url"].string!),
-            url: nil
-        )]
-        dataCell.append(userData(
-            cell: 3,
-            name: "Repositories",
-            bio: nil,
-            image: nil,
-            url: nil
-        ))
-        for namE in nameRepo{
-            dataCell.append(userData(
-                cell: 2,
-                name: namE,
-                bio: "",
-                image: nil,
-                url: repoDATA[namE]
-            ))
-        }
-        //print(dataCell)
-        //self.title = authDATA["login"].string!
-    }
+    var repolist = [String]()
     func avatarImage(url: String) -> UIImage{
         let imgURL: NSURL = NSURL(string: url)!
         let imgData = NSData(contentsOf: imgURL as URL)
         return UIImage(data: imgData! as Data)!
     }
+    override func viewDidLoad() {
+        self.tableView.contentInset = UIEdgeInsetsMake(0, 0, 0, 0)
+        sections = [
+            Section(type: .Account, items: [.User], data: ["":""]),
+            Section(type: .Repos, items: [.Repo], data: repoDATA)
+        ]
+        self.navigationItem.title = "Login"
+        if authDATA["bio"].string == nil && authDATA["name"].string == nil{
+            dataCell = [userData(
+                name: "",
+                bio: "",
+                image: avatarImage(url: authDATA["avatar_url"].string!),
+                url: nil
+            )]
+        } else if authDATA["name"].string == nil{
+            dataCell = [userData(
+                name: "",
+                bio: authDATA["bio"].string!,
+                image: avatarImage(url: authDATA["avatar_url"].string!),
+                url: nil
+            )]
+        } else {
+            dataCell = [userData(
+                name: authDATA["name"].string!,
+                bio: "",
+                image: avatarImage(url: authDATA["avatar_url"].string!),
+                url: nil
+            )]
+        }
+        for name in repoDATA.keys{
+            repolist.append(name)
+        }
+    }
+    override func numberOfSections(in tableView: UITableView) -> Int {
+        return sections.count
+    }
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return dataCell.count
+        return sections[section].data.count
+    }
+    override func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
+        switch sections[section].type {
+        case .Account:
+            return nil
+        case .Repos:
+            return "Repositories"
+        }
     }
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        if dataCell[indexPath.row].cell == 1{
+        switch sections[indexPath.section].items[0] {
+        case .User:
             let cell = Bundle.main.loadNibNamed("AboutUserTableViewCell", owner: self, options: nil)?.first as! AboutUserTableViewCell
             cell.userAvatar.image = dataCell[indexPath.row].image
             cell.userAvatar.clipsToBounds = true
             cell.userAvatar.layer.cornerRadius = cell.userAvatar.frame.height / 2
             cell.userBio.text = dataCell[indexPath.row].bio
             cell.userName.text = dataCell[indexPath.row].name
-            self.tableView.contentInset = UIEdgeInsets(top: (self.navigationController?.navigationBar.frame.size.height)!+15, left: 0, bottom: 0,right: 0)
             cell.selectionStyle = UITableViewCellSelectionStyle.none
             return cell
-        } else if dataCell[indexPath.row].cell == 2{
+        case .Repo:
             let cell = Bundle.main.loadNibNamed("RepositoriesTableViewCell", owner: self, options: nil)?.first as! RepositoriesTableViewCell
-            cell.repoName.text = dataCell[indexPath.row].name
+            cell.repoName.text = repolist[indexPath.row]
             cell.selectionStyle = UITableViewCellSelectionStyle.blue
-            return cell
-        }else if dataCell[indexPath.row].cell == 3{
-            let cell = Bundle.main.loadNibNamed("HeaderTableViewCell", owner: self, options: nil)?.first as! HeaderTableViewCell
-            cell.header.text = dataCell[indexPath.row].name
-            cell.selectionStyle = UITableViewCellSelectionStyle.none
-            return cell
-        }else{
-            let cell = Bundle.main.loadNibNamed("RepositoriesTableViewCell", owner: self, options: nil)?.first as! RepositoriesTableViewCell
-            cell.repoName.text = "_"
             return cell
         }
     }
     override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        if dataCell[indexPath.row].cell == 1{
+        switch sections[indexPath.section].items[0] {
+        case .User:
             return 95
-        }else if dataCell[indexPath.row].cell == 3{
-            return 36
-        }else{
+        case .Repo:
             return 45
         }
     }
+    var index = 0
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        if dataCell[indexPath.row].cell == 2{
-            UIApplication.shared.openURL(NSURL(string: dataCell[indexPath.row].url)! as URL)
+        switch sections[indexPath.section].items[0] {
+        case .Repo:
+            tabBarController?.selectedIndex = 2
+        case .User:
+            return
         }
     }
 }

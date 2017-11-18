@@ -7,7 +7,7 @@
 //
 
 import UIKit
-
+import SwiftyJSON
 class TapBarController: UITabBarController {
 
     override func viewDidLoad() {
@@ -16,6 +16,9 @@ class TapBarController: UITabBarController {
     }
     @IBAction func extBtnPressed(_ sender: Any) {
         UserDefaults.standard.set(nil, forKey: "token")
+        authDATA = JSON("")
+        repoDATA = [String: String]()
+        newsDATA = [[String: String]]()
         let AuthVC = self.storyboard?.instantiateViewController(withIdentifier: "AuthVC")
         self.present(AuthVC!, animated: false)
     }
