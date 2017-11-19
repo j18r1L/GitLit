@@ -1,9 +1,8 @@
 # GitLit
 
 <h3>Тестовый пользователь:</h3>
-<br>
-<h4>login: gitlit2017</h4>
-<h4>pass: qwerty1</h4>
+<h4>login: gitlit2017
+pass: qwerty1</h4>
 
 GitLit -  приложение GitHub, которое содержит в себе большинство функций git-а, облегчая жизнь обычному ползователю.
 
