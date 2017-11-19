@@ -9,7 +9,6 @@
 import UIKit
 
 class FeedsTableViewCell: UITableViewCell {
-
     @IBOutlet weak var userAvatar: UIImageView!
     @IBOutlet weak var userName: UILabel!
     @IBOutlet weak var userRepo: UILabel!
@@ -17,5 +16,4 @@ class FeedsTableViewCell: UITableViewCell {
     @IBOutlet weak var commitTime: UILabel!
     @IBOutlet weak var userAction: UILabel!
     @IBOutlet weak var cellView: UIView!
-    
 }

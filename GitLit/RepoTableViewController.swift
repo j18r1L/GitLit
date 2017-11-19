@@ -5,25 +5,31 @@
 //  Created by Emil Astanov on 14.11.17.
 //  Copyright © 2017 Emil Astanov. All rights reserved.
 //
-
+//  Данный класс отображает данные о репозиториях.
+//
 import UIKit
 import Alamofire
 import SwiftyJSON
 var branches = [String]()
 class RepoTableViewController: UITableViewController {
+    
     var dataCell = [userData]()
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         let nameRepo = repoDATA.keys
-        for namE in nameRepo{
+        for name in nameRepo{
             dataCell.append(userData(
-                name: namE,
+                name: name,
                 bio: "",
                 image: nil,
-                url: repoDATA[namE]
+                url: repoDATA[name]
             ))
         }
     }
+    //
+    //  Данная функция подгружает список веток соответствующего репозитория.
+    //
     func getDataForRepo(url: String){
         branches = [String]()
         let headers = [

@@ -9,7 +9,5 @@
 import UIKit
 
 class DirTableViewCell: UITableViewCell {
-
     @IBOutlet weak var dirName: UILabel!
-    
 }

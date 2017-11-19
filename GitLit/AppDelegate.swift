@@ -19,6 +19,11 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         checkAuth()
         return true
     }
+    //
+    //  Данная функция проверяет: был ли пользователь авторезирован ранее.
+    //  Если был: то сразу отображается информация о пользователе.
+    //  В противном случае отображается окно авторизации.
+    //
     func checkAuth(){
         let sb = UIStoryboard(name: "Main", bundle: nil)
         if UserDefaults.standard.string(forKey: "token") != nil{

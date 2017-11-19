@@ -5,10 +5,15 @@
 //  Created by Emil Astanov on 08.11.17.
 //  Copyright © 2017 Emil Astanov. All rights reserved.
 //
-
+//  Данный класс отображает активность подписок.
+//
 import UIKit
 import SwiftyJSON
 import Alamofire
+//
+//  Еще один метод для загрузки изображения.
+//  Добавляется в стандартный класс UIImageView.
+//
 extension UIImageView {
     func downloadedFrom(link:String) {
         guard let url = URL(string: link) else { return }
@@ -21,15 +26,14 @@ extension UIImageView {
     }
 }
 class NewsTableViewController: UITableViewController {
-    func avatarImage(url: String) -> UIImage{
-        let imgURL: NSURL = NSURL(string: url)!
-        let imgData = NSData(contentsOf: imgURL as URL)
-        return UIImage(data: imgData! as Data)!
-    }
+
     override func viewDidLoad() {
         super.viewDidLoad()
         sortedData()
     }
+    //
+    //  Данная функция сотрирует данные об активностях по дате добавления.
+    //
     func sortedData(){
         newsDATA = newsDATA.sorted(by: {
             let dateFormatter = DateFormatter()
@@ -39,20 +43,14 @@ class NewsTableViewController: UITableViewController {
             return op1! >= op2!
         })
     }
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
-    }
-
-    // MARK: - Table view data source
-
+    
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        // #warning Incomplete implementation, return the number of rows
         return newsDATA.count
     }
+    
     override func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
         let cell:FeedsTableViewCell = cell as! FeedsTableViewCell
-        //cell.userAvatar.image = avatarImage(url: newsDATA[indexPath.row]["avatar_url"]!)
+
         cell.userAvatar.downloadedFrom(link: newsDATA[indexPath.row]["avatar_url"]!)
         cell.userName.text = newsDATA[indexPath.row]["name"]
         cell.userCommit.text = newsDATA[indexPath.row]["commit"]
@@ -60,9 +58,11 @@ class NewsTableViewController: UITableViewController {
         cell.commitTime.text = newsDATA[indexPath.row]["time"]
         cell.userAction.text = newsDATA[indexPath.row]["action"]
         cell.userAvatar.clipsToBounds = true
-        //print(newsDATA[indexPath.row])
     }
-
+    //
+    //  В зависимости от того содержит ли активность сообщение пользователя, ячейке
+    //  присваивается высота.
+    //
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = Bundle.main.loadNibNamed("FeedsTableViewCell", owner: self, options: nil)?.first as! FeedsTableViewCell
         cell.userAvatar.layer.cornerRadius = cell.userAvatar.frame.height / 2
@@ -72,9 +72,7 @@ class NewsTableViewController: UITableViewController {
             cell.cellView.frame.size.height -= 40
         }
         self.tableView.separatorStyle = .none
-        //print(newsDATA[indexPath.row])
-        //self.tableView.contentInset = UIEdgeInsets(top: (self.navigationController?.navigationBar.frame.size.height)!+15, left: 0, bottom: 0,right: 0)
-        //print(newsDATA[indexPath.row]["time"])
+
         return cell
     }
     override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
