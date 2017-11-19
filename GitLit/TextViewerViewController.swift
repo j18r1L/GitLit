@@ -5,7 +5,8 @@
 //  Created by Emil Astanov on 17.11.17.
 //  Copyright © 2017 Emil Astanov. All rights reserved.
 //
-
+//  Данный класс отображает просмоторщик текста.
+//
 import UIKit
 
 class TextViewerViewController: UIViewController, UITextViewDelegate{
@@ -16,6 +17,10 @@ class TextViewerViewController: UIViewController, UITextViewDelegate{
     var filename = ""
     @IBOutlet weak var leftPanel: UITextView!
     @IBOutlet weak var generalPanel: UITextView!
+    //
+    //  Содержимое загруженного файла помещается в textview, затем
+    //  файл удаляется.
+    //
     override func viewDidLoad() {
         super.viewDidLoad()
         leftPanel.delegate = self
@@ -35,6 +40,9 @@ class TextViewerViewController: UIViewController, UITextViewDelegate{
             print("Ooops! Something went wrong: \(error)")
         }
     }
+    //
+    //  Эта функция позваляет осуществлять scrolling двух textview одновременно.
+    //
     func scrollViewDidScroll(_ scrollView: UIScrollView) {
         if scrollView == self.leftPanel{
             generalPanel.contentOffset = leftPanel.contentOffset
@@ -42,6 +50,9 @@ class TextViewerViewController: UIViewController, UITextViewDelegate{
             leftPanel.contentOffset = generalPanel.contentOffset
         }
     }
+    //
+    //  Данная функция отображает номер линий.
+    //
     func numberOfLine(){
         lineNumber = 1
         wholeText = generalPanel.text

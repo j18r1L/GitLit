@@ -5,7 +5,8 @@
 //  Created by Emil Astanov on 02.11.17.
 //  Copyright © 2017 Emil Astanov. All rights reserved.
 //
-
+//  Данный класс подгружает, данные пльзователя и передает их дальше.
+//
 import UIKit
 import Alamofire
 import SwiftyJSON
@@ -17,8 +18,11 @@ class Handler: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         userData()
-        // Do any additional setup after loading the view.
     }
+    //
+    //  Данная функция записывает основные данные об авторезированном пользователе в глобальную
+    //  переменную и вызывает функцию repoDATA(login).
+    //
     func userData(){
         let headers = [
             "Authorization" : "Basic " + UserDefaults.standard.string(forKey: "token")!
@@ -28,6 +32,10 @@ class Handler: UIViewController {
             self.repoData(login: authDATA["login"].string!)
         }
     }
+    //
+    //  Данная функция записывает данные о репозитории пользователя в глобольную переменную
+    //  и вызывает функцию newsData(login).
+    //
     func repoData(login: String){
         let headers = [
             "Authorization" : "Basic " + UserDefaults.standard.string(forKey: "token")!
@@ -40,6 +48,10 @@ class Handler: UIViewController {
             self.newsData(login: login)
         }
     }
+    //
+    //  Данная функция загружает данные о последних 7 активностей подписок пользователя
+    //  (просто 7 проще всего обработать)), и переводит на Home контроллер.
+    //
     func newsData(login: String){
         let headers = [
             "Authorization" : "Basic " + UserDefaults.standard.string(forKey: "token")!

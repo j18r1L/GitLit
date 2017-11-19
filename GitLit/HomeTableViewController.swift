@@ -5,24 +5,36 @@
 //  Created by Emil Astanov on 25.10.17.
 //  Copyright © 2017 Emil Astanov. All rights reserved.
 //
-
+//  Данный класс отображает основные данные пользователя.
+//
 import UIKit
-import Alamofire
 import SwiftyJSON
+//
+//  Структура для хранения данных о пользователе.
+//
 struct userData {
     let name : String!
     let bio : String!
     let image : UIImage!
     let url: String!
 }
+//
+//  Перечесление для отличия секции "репозитории" от "аккаунт".
+//
 private enum SectionType {
     case Account
     case Repos
 }
+//
+//  Перечисление для отличия ячейки "пользователь" от "репозиторий"
+//
 private enum Item {
     case User
     case Repo
 }
+//
+//  Структура для хранения данных ячейки.
+//
 private struct Section {
     var type: SectionType
     var items: [Item]
@@ -37,6 +49,10 @@ class HomeTableViewController: UITableViewController{
         let imgData = NSData(contentsOf: imgURL as URL)
         return UIImage(data: imgData! as Data)!
     }
+    //
+    //  При отображении контроллера, все данные структурируются и записываются в соответствующие
+    //  массивы.
+    //
     override func viewDidLoad() {
         self.tableView.contentInset = UIEdgeInsetsMake(0, 0, 0, 0)
         sections = [
@@ -102,6 +118,9 @@ class HomeTableViewController: UITableViewController{
             return cell
         }
     }
+    //
+    //  В зависимости от типа ячейки ей присваивается разная высота.
+    //
     override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         switch sections[indexPath.section].items[0] {
         case .User:
@@ -111,6 +130,9 @@ class HomeTableViewController: UITableViewController{
         }
     }
     var index = 0
+    //
+    //  При нажатии на любую ячеку секции "репозитории" открывается вкладка "рипозитории"
+    //
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         switch sections[indexPath.section].items[0] {
         case .Repo:

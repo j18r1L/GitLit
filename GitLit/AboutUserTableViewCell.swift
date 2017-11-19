@@ -9,7 +9,6 @@
 import UIKit
 
 class AboutUserTableViewCell: UITableViewCell {
-
     @IBOutlet weak var userAvatar: UIImageView!
     @IBOutlet weak var userBio: UILabel!
     @IBOutlet weak var userName: UILabel!

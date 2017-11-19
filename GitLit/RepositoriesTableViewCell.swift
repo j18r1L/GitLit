@@ -9,7 +9,5 @@
 import UIKit
 
 class RepositoriesTableViewCell: UITableViewCell {
-
     @IBOutlet weak var repoName: UILabel!
-    
 }
