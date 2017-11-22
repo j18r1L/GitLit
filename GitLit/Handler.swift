@@ -68,7 +68,7 @@ class Handler: UIViewController {
                         let json = JSON(response.result.value!)[ind]
                         var time = json["created_at"].string!
                         time = time[..<time.index(time.startIndex, offsetBy: 10)] + " " + time[time.index(time.startIndex, offsetBy: 11) ..< time.index(time.endIndex, offsetBy: -1)]
-                        //print(json)
+                        print(json)
                         if json["payload"]["commits"][0]["message"].string != nil && json["payload"]["action"].string != nil{
                             newsDATA.append([
                                 "name": user,
