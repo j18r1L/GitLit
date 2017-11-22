@@ -66,4 +66,7 @@ class RepoTableViewController: UITableViewController {
         repoVC.title = dataCell[index].name
         repoVC.repo = dataCell[index].name
     }
+    override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        return 45
+    }
 }

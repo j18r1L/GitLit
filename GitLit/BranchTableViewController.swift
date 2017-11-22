@@ -38,6 +38,11 @@ class BranchTableViewController: UITableViewController {
                 cell.dirName.text = filehierarchy[indexPath.row].name
                 cell.selectionStyle = UITableViewCellSelectionStyle.blue
                 return cell
+            case .img:
+                let cell = Bundle.main.loadNibNamed("ImgTableViewCell", owner: self, options: nil)?.first as! ImgTableViewCell
+                cell.imgName.text = filehierarchy[indexPath.row].name
+                cell.selectionStyle = UITableViewCellSelectionStyle.blue
+                return cell
             }
         } else{
             print("Error: Index out of range!")
@@ -81,6 +86,7 @@ class BranchTableViewController: UITableViewController {
                 ]
                 Alamofire.request(filehierarchy[indexPath.row].url, headers: headers).responseJSON{(response) -> Void in
                     let data = JSON(response.result.value!)
+                    FileVC?.title = filehierarchy[indexPath.row].name
                     backFileHierarchy = filehierarchy
                     filehierarchy = [File]()
                     for ind in 0...data.count-1{
@@ -88,6 +94,8 @@ class BranchTableViewController: UITableViewController {
                     }
                     self.navigationController?.pushViewController(FileVC!, animated: true)
                 }
+            case .img:
+                self.performSegue(withIdentifier: "GoToImg", sender: nil)
             }
         } else {
             print("Error: Index out of range!")
@@ -97,10 +105,24 @@ class BranchTableViewController: UITableViewController {
     //
     //  Передача заголовка и данных в следующий контроллер.
     //
+    func avatarImage(url: String) -> UIImage{
+        let imgURL: NSURL = NSURL(string: url)!
+        let imgData = NSData(contentsOf: imgURL as URL)
+        return UIImage(data: imgData! as Data)!
+    }
     override func prepare(for segue: UIStoryboardSegue, sender: Any?){
-        let textVC: TextViewerViewController = (segue.destination as? TextViewerViewController)!
-        textVC.title = filehierarchy[index].name
-        textVC.filename = filehierarchy[index].name
+        switch filehierarchy[index].type {
+        case .file:
+            let textVC: TextViewerViewController = (segue.destination as? TextViewerViewController)!
+            textVC.title = filehierarchy[index].name
+            textVC.filename = filehierarchy[index].name
+        case .img:
+            let imgVC: ImgViewerViewController = (segue.destination as? ImgViewerViewController)!
+            imgVC.title = filehierarchy[index].name
+            imgVC.url = filehierarchy[index].url
+        case .dir:
+            return
+        }
     }
     //
     //  Обработка возвращения назад.
@@ -108,5 +130,8 @@ class BranchTableViewController: UITableViewController {
     @IBAction func backBtnPressed(_ sender: Any) {
         filehierarchy = backFileHierarchy
         self.navigationController?.popViewController(animated: true)
+    }
+    override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        return 45
     }
 }

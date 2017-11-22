@@ -1,23 +1,15 @@
 //
-//  HomeTableViewController.swift
+//  UserTableViewController.swift
 //  GitLit
 //
-//  Created by Emil Astanov on 25.10.17.
+//  Created by Emil Astanov on 21.11.17.
 //  Copyright © 2017 Emil Astanov. All rights reserved.
 //
-//  Данный класс отображает основные данные пользователя.
+//  Класс аналогичный Home
 //
 import UIKit
 import SwiftyJSON
-//
-//  Структура для хранения данных о пользователе.
-//
-struct userData {
-    let name : String!
-    let bio : String!
-    let image : UIImage!
-    let url: String!
-}
+import Alamofire
 //
 //  Перечесление для отличия секции "репозитории" от "аккаунт".
 //
@@ -42,56 +34,50 @@ private struct Section {
     var items: [Item]
     var data: [String: String]
 }
-class HomeTableViewController: UITableViewController{
+var otherRepoData = [String: String]()
+var otherUserData = JSON("")
+class UserTableViewController: UITableViewController {
     private var sections = [Section]()
-    var dataCell = [userData]()
     var repolist = [String]()
-    func avatarImage(url: String) -> UIImage{
-        let imgURL: NSURL = NSURL(string: url)!
-        let imgData = NSData(contentsOf: imgURL as URL)
-        return UIImage(data: imgData! as Data)!
-    }
-    //
-    //  При отображении контроллера, все данные структурируются и записываются в соответствующие
-    //  массивы.
-    //
+    var dataCell = [userData]()
     override func viewDidLoad() {
-        self.tableView.contentInset = UIEdgeInsetsMake(0, 0, 0, 0)
+        super.viewDidLoad()
         sections = [
             Section(type: .Account, items: [.User], data: ["":""]),
-            Section(type: .Repos, items: [.Repo], data: repoDATA),
+            Section(type: .Repos, items: [.Repo], data: otherRepoData),
             Section(type: .Logo, items: [.logo], data: ["":""])
         ]
-        if authDATA["bio"].string == nil && authDATA["name"].string == nil{
+        self.title = otherUserData["login"].string!
+        if otherUserData["bio"].string == nil && otherUserData["name"].string == nil{
             dataCell = [userData(
                 name: "",
                 bio: "",
-                image: avatarImage(url: authDATA["avatar_url"].string!),
-                url: nil
-            )]
-        } else if authDATA["name"].string == nil{
+                image: nil,
+                url: otherUserData["avatar_url"].string!
+                )]
+        } else if otherUserData["name"].string == nil{
             dataCell = [userData(
                 name: "",
-                bio: authDATA["bio"].string!,
-                image: avatarImage(url: authDATA["avatar_url"].string!),
-                url: nil
-            )]
-        } else if authDATA["bio"].string == nil{
+                bio: otherUserData["bio"].string!,
+                image: nil,
+                url: otherUserData["avatar_url"].string!
+                )]
+        } else if otherUserData["bio"].string == nil{
             dataCell = [userData(
-                name: authDATA["name"].string!,
+                name: otherUserData["name"].string!,
                 bio: "",
-                image: avatarImage(url: authDATA["avatar_url"].string!),
-                url: nil
-            )]
+                image: nil,
+                url: otherUserData["avatar_url"].string!
+                )]
         } else {
             dataCell = [userData(
-                name: authDATA["name"].string!,
-                bio: authDATA["bio"].string!,
-                image: avatarImage(url: authDATA["avatar_url"].string!),
-                url: nil
-            )]
+                name: otherUserData["name"].string!,
+                bio: otherUserData["bio"].string!,
+                image: nil,
+                url: otherUserData["avatar_url"].string!
+                )]
         }
-        for name in repoDATA.keys{
+        for name in otherRepoData.keys{
             repolist.append(name)
         }
     }
@@ -118,7 +104,7 @@ class HomeTableViewController: UITableViewController{
             tableView.sectionFooterHeight = 20
             cell.backGround.clipsToBounds = true
             cell.backGround.layer.cornerRadius = 20
-            cell.userAvatar.image = dataCell[indexPath.row].image
+            cell.userAvatar.downloadedFrom(link: dataCell[indexPath.row].url)
             cell.userAvatar.clipsToBounds = true
             cell.userAvatar.layer.cornerRadius = cell.userAvatar.frame.height / 2
             cell.userBio.text = dataCell[indexPath.row].bio
@@ -159,18 +145,46 @@ class HomeTableViewController: UITableViewController{
             return 161
         }
     }
+    func getDataForRepo(url: String){
+        branches = [String]()
+        let headers = [
+            "Authorization" : "Basic " + UserDefaults.standard.string(forKey: "token")!
+        ]
+        Alamofire.request(url, headers: headers).responseJSON{ response in
+            let jsonResp = JSON(response.result.value!)
+            let branchUrl = (jsonResp["branches_url"].string!).replacingOccurrences(of: "{/branch}", with: "")
+            Alamofire.request(branchUrl, headers: headers).responseJSON{ response in
+                let jsonResp = JSON(response.result.value!)
+                for ind in 0...jsonResp.count-1{
+                    branches.append(jsonResp[ind]["name"].string!)
+                }
+                self.performSegue(withIdentifier: "GoToRepoFromAtherUser", sender: nil)
+            }
+        }
+    }
     var index = 0
     //
     //  При нажатии на любую ячеку секции "репозитории" открывается вкладка "рипозитории"
     //
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        index = indexPath.row
         switch sections[indexPath.section].items[0] {
         case .Repo:
-            tabBarController?.selectedIndex = 2
+            getDataForRepo(url: otherRepoData[repolist[indexPath.row]]!)
         case .User:
             return
         case .logo:
             return
         }
+    }
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        let repoVC: RepoLibTableViewController = (segue.destination as? RepoLibTableViewController)!
+        repoVC.title = repolist[index]
+        repoVC.repo = repolist[index]
+    }
+    @IBAction func backBtnPressed(_ sender: Any) {
+        otherRepoData = [String: String]()
+        otherUserData = JSON("")
+        self.navigationController?.popViewController(animated: true)
     }
 }

@@ -30,7 +30,7 @@ class TextViewerViewController: UIViewController, UITextViewDelegate{
             let contentsOfFile = try NSString(contentsOfFile: path, encoding: String.Encoding.utf8.rawValue)
             generalPanel.text = (contentsOfFile as String?)
         } catch let error as NSError {
-            print("there is an file reading error: \(error)")
+            generalPanel.text = "there is an file reading error: \(error)"
         }
         numberOfLine()
         do {

@@ -28,8 +28,13 @@ class Handler: UIViewController {
             "Authorization" : "Basic " + UserDefaults.standard.string(forKey: "token")!
         ]
         Alamofire.request("https://api.github.com/user", headers: headers).responseJSON{(response) -> Void in
-            authDATA = JSON(response.result.value!)
-            self.repoData(login: authDATA["login"].string!)
+            if response.result.value != nil {
+                authDATA = JSON(response.result.value!)
+                self.repoData(login: authDATA["login"].string!)
+            }
+            else {
+                self.performSegue(withIdentifier: "GoToError", sender: nil)
+            }
         }
     }
     //
@@ -45,12 +50,17 @@ class Handler: UIViewController {
             for index in 0...(json.count-1){
                 repoDATA[json[index]["full_name"].string!] = json[index]["url"].string!
             }
-            self.newsData(login: login)
+            Alamofire.request("https://api.github.com/users/" + login + "/subscriptions", headers: headers).responseJSON{ response in
+                let json = JSON(response.result.value!)
+                for index in 0..<json.count{
+                    repoDATA[json[index]["full_name"].string!] = json[index]["url"].string!
+                }
+                self.newsData(login: login)
+            }
         }
     }
     //
-    //  Данная функция загружает данные о последних 7 активностей подписок пользователя
-    //  (просто 7 проще всего обработать)), и переводит на Home контроллер.
+    //  Данная функция загружает данные о активностях подписок пользователя.
     //
     func newsData(login: String){
         let headers = [
@@ -64,8 +74,9 @@ class Handler: UIViewController {
             }
             for user in followers{
                 Alamofire.request("https://api.github.com/users/"+user+"/events", headers: headers).responseJSON{(response) -> Void in
-                    for ind in 0...7{
-                        let json = JSON(response.result.value!)[ind]
+                    let userActivity = JSON(response.result.value!)
+                    for ind in 0..<userActivity.count{
+                        let json = userActivity[ind]
                         var time = json["created_at"].string!
                         time = time[..<time.index(time.startIndex, offsetBy: 10)] + " " + time[time.index(time.startIndex, offsetBy: 11) ..< time.index(time.endIndex, offsetBy: -1)]
                         //print(json)

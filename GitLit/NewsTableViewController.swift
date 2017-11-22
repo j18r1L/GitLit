@@ -30,6 +30,8 @@ class NewsTableViewController: UITableViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         sortedData()
+        tableView.delegate = self
+        tableView.dataSource = self
     }
     //
     //  Данная функция сотрирует данные об активностях по дате добавления.
@@ -63,6 +65,7 @@ class NewsTableViewController: UITableViewController {
     //  В зависимости от того содержит ли активность сообщение пользователя, ячейке
     //  присваивается высота.
     //
+    var buff = false
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = Bundle.main.loadNibNamed("FeedsTableViewCell", owner: self, options: nil)?.first as! FeedsTableViewCell
         cell.userAvatar.layer.cornerRadius = cell.userAvatar.frame.height / 2
@@ -72,9 +75,37 @@ class NewsTableViewController: UITableViewController {
             cell.cellView.frame.size.height -= 40
         }
         self.tableView.separatorStyle = .none
-
+        
+        cell.userAvatar.isUserInteractionEnabled = true
+        cell.userAvatar.tag = indexPath.row
+        cell.userAvatar.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(imgTapped)))
+  
         return cell
     }
+    @objc func imgTapped(recognizer: UITapGestureRecognizer){
+        let headers = [
+            "Authorization" : "Basic " + UserDefaults.standard.string(forKey: "token")!
+        ]
+        let index = (recognizer.view?.tag)!
+        let login = newsDATA[index]["name"]!
+        Alamofire.request("https://api.github.com/users/" + login, headers: headers).responseJSON{ response in
+            otherUserData = JSON(response.result.value!)
+            Alamofire.request("https://api.github.com/users/" + login + "/repos", headers: headers).responseJSON{(response) -> Void in
+                let json = JSON(response.result.value!)
+                for index in 0...(json.count-1){
+                    otherRepoData[json[index]["full_name"].string!] = json[index]["url"].string!
+                }
+                Alamofire.request("https://api.github.com/users/" + login + "/subscriptions", headers: headers).responseJSON{ response in
+                    let json = JSON(response.result.value!)
+                    for index in 0..<json.count{
+                        otherRepoData[json[index]["full_name"].string!] = json[index]["url"].string!
+                    }
+                    self.performSegue(withIdentifier: "GoToUser", sender: nil)
+                }
+            }
+        }
+    }
+
     override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         if newsDATA[indexPath.row]["commit"] == ""{
             return 140
