@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		4D8198921FC52D2A0095464E /* News.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 4D8198901FC52D2A0095464E /* News.storyboard */; };
 		581DDE871FAB215B008BBD64 /* Handler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 581DDE861FAB215B008BBD64 /* Handler.swift */; };
 		581DDE8A1FAB2835008BBD64 /* RepositoriesTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 581DDE881FAB2835008BBD64 /* RepositoriesTableViewCell.swift */; };
 		581DDE8B1FAB2835008BBD64 /* RepositoriesTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 581DDE891FAB2835008BBD64 /* RepositoriesTableViewCell.xib */; };
@@ -65,6 +66,7 @@
 
 /* Begin PBXFileReference section */
 		3E47F1F7E11B8064A5F0872A /* Pods_GitLit.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_GitLit.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		4D8198911FC52D2A0095464E /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/News.storyboard; sourceTree = "<group>"; };
 		581DDE861FAB215B008BBD64 /* Handler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Handler.swift; sourceTree = "<group>"; };
 		581DDE881FAB2835008BBD64 /* RepositoriesTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RepositoriesTableViewCell.swift; sourceTree = "<group>"; };
 		581DDE891FAB2835008BBD64 /* RepositoriesTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = RepositoriesTableViewCell.xib; sourceTree = "<group>"; };
@@ -158,6 +160,7 @@
 				58CCCC711FBC149500A152B6 /* RepoLibTableViewController.swift */,
 				5878648D1FBDDB110091349E /* BranchTableViewController.swift */,
 				58C7A1BD1FBF2B2A00A1F550 /* TextViewerViewController.swift */,
+				4D8198901FC52D2A0095464E /* News.storyboard */,
 				58D5A4051F9BB824008A6AF8 /* Main.storyboard */,
 				58C7A1C11FBF484900A1F550 /* DirTableViewCell.swift */,
 				58C7A1C21FBF484900A1F550 /* DirTableViewCell.xib */,
@@ -291,6 +294,7 @@
 				584DAB521FA4A8F6003134AD /* AboutUserTableViewCell.xib in Resources */,
 				5822B4BD1FB31C1900FE9AA2 /* FeedsTableViewCell.xib in Resources */,
 				581DDE8B1FAB2835008BBD64 /* RepositoriesTableViewCell.xib in Resources */,
+				4D8198921FC52D2A0095464E /* News.storyboard in Resources */,
 				58D5A40C1F9BB824008A6AF8 /* LaunchScreen.storyboard in Resources */,
 				58CF246D1FADCB1A00F5DABE /* HeaderTableViewCell.xib in Resources */,
 				58D5A4071F9BB824008A6AF8 /* Main.storyboard in Resources */,
@@ -408,6 +412,14 @@
 /* End PBXTargetDependency section */
 
 /* Begin PBXVariantGroup section */
+		4D8198901FC52D2A0095464E /* News.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				4D8198911FC52D2A0095464E /* Base */,
+			);
+			name = News.storyboard;
+			sourceTree = "<group>";
+		};
 		58D5A4051F9BB824008A6AF8 /* Main.storyboard */ = {
 			isa = PBXVariantGroup;
 			children = (

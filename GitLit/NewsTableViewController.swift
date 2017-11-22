@@ -34,6 +34,7 @@ class NewsTableViewController: UITableViewController {
     //
     //  Данная функция сотрирует данные об активностях по дате добавления.
     //
+    
     func sortedData(){
         newsDATA = newsDATA.sorted(by: {
             let dateFormatter = DateFormatter()
@@ -43,6 +44,7 @@ class NewsTableViewController: UITableViewController {
             return op1! >= op2!
         })
     }
+ 
     
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return newsDATA.count
