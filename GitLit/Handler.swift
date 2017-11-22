@@ -64,11 +64,13 @@ class Handler: UIViewController {
             }
             for user in followers{
                 Alamofire.request("https://api.github.com/users/"+user+"/events", headers: headers).responseJSON{(response) -> Void in
-                    for ind in 0...7{
+                    let userActivity = JSON(response.result.value!)
+                    for ind in 0..<userActivity.count{
                         let json = JSON(response.result.value!)[ind]
+                        print(json)
                         var time = json["created_at"].string!
                         time = time[..<time.index(time.startIndex, offsetBy: 10)] + " " + time[time.index(time.startIndex, offsetBy: 11) ..< time.index(time.endIndex, offsetBy: -1)]
-                        print(json)
+                        
                         if json["payload"]["commits"][0]["message"].string != nil && json["payload"]["action"].string != nil{
                             newsDATA.append([
                                 "name": user,
