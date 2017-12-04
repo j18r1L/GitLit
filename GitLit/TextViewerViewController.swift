@@ -25,6 +25,7 @@ class TextViewerViewController: UIViewController, UITextViewDelegate{
         super.viewDidLoad()
         leftPanel.delegate = self
         generalPanel.delegate = self
+
         let path = NSSearchPathForDirectoriesInDomains(.documentDirectory, .userDomainMask, true)[0] + "/" + filename
         do {
             let contentsOfFile = try NSString(contentsOfFile: path, encoding: String.Encoding.utf8.rawValue)
@@ -50,6 +51,7 @@ class TextViewerViewController: UIViewController, UITextViewDelegate{
             leftPanel.contentOffset = generalPanel.contentOffset
         }
     }
+
     //
     //  Данная функция отображает номер линий.
     //
