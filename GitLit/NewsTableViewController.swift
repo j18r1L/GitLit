@@ -56,9 +56,12 @@ class NewsTableViewController: UITableViewController {
         cell.userAvatar.downloadedFrom(link: newsDATA[indexPath.row]["avatar_url"]!)
         cell.userName.text = newsDATA[indexPath.row]["name"]
         cell.userCommit.text = newsDATA[indexPath.row]["commit"]
+        if newsDATA[indexPath.row]["commit"] == ""{
+            cell.userCommit.text = newsDATA[indexPath.row]["action"]
+            cell.userAction.text = ""
+        }
         cell.userRepo.text = newsDATA[indexPath.row]["repo"]
         cell.commitTime.text = newsDATA[indexPath.row]["time"]
-        cell.userAction.text = newsDATA[indexPath.row]["action"]
         cell.userAvatar.clipsToBounds = true
     }
     //
@@ -71,9 +74,7 @@ class NewsTableViewController: UITableViewController {
         cell.userAvatar.layer.cornerRadius = cell.userAvatar.frame.height / 2
         cell.cellView.clipsToBounds = true
         cell.cellView.layer.cornerRadius = 15
-        if newsDATA[indexPath.row]["commit"] == ""{
-            cell.cellView.frame.size.height -= 40
-        }
+        
         self.tableView.separatorStyle = .none
         
         cell.userAvatar.isUserInteractionEnabled = true
@@ -107,11 +108,7 @@ class NewsTableViewController: UITableViewController {
     }
 
     override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        if newsDATA[indexPath.row]["commit"] == ""{
-            return 140
-        } else {
-            return 180
-        }
+        return 180
     }
     
 }
