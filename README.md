@@ -1,5 +1,5 @@
 # GitLit
-
+<a href="https://github.com/j18r1L/GitLit/tree/Auth">самый свежий код</a>
 <h3>Тестовый пользователь:</h3>
 <h4>login: gitlit2017
 pass: qwerty1</h4>
