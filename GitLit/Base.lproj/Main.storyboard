@@ -612,53 +612,42 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="603"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" editable="NO" text="1. " translatesAutoresizingMaskIntoConstraints="NO" id="jV6-ql-krJ">
-                                <rect key="frame" x="0.0" y="0.0" width="41" height="603"/>
-                                <color key="backgroundColor" red="0.40000000600000002" green="0.40000000600000002" blue="0.40000000600000002" alpha="1" colorSpace="calibratedRGB"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="603" id="Kvu-yM-NN9"/>
-                                    <constraint firstAttribute="width" constant="41" id="X1y-qn-jxz"/>
-                                </constraints>
-                                <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="16"/>
-                                <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
-                                <userDefinedRuntimeAttributes>
-                                    <userDefinedRuntimeAttribute type="boolean" keyPath="showsHorizontalScrollIndicator" value="NO"/>
-                                </userDefinedRuntimeAttributes>
-                            </textView>
-                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" usesAttributedText="YES" translatesAutoresizingMaskIntoConstraints="NO" id="bWE-eL-ibR">
-                                <rect key="frame" x="41" y="0.0" width="334" height="603"/>
-                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                <constraints>
-                                    <constraint firstAttribute="width" constant="334" id="ENF-ZI-OtO"/>
-                                    <constraint firstAttribute="height" constant="603" id="dP6-v4-Egm"/>
-                                </constraints>
-                                <attributedString key="attributedText">
-                                    <fragment content="Text">
-                                        <attributes>
-                                            <font key="NSFont" metaFont="system" size="16"/>
-                                            <paragraphStyle key="NSParagraphStyle" alignment="natural" lineBreakMode="clipping" baseWritingDirection="natural" tighteningFactorForTruncation="0.0"/>
-                                        </attributes>
-                                    </fragment>
-                                </attributedString>
-                                <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
-                            </textView>
+                            <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="OKd-2X-5Sn">
+                                <rect key="frame" x="0.0" y="0.0" width="375" height="603"/>
+                                <gestureRecognizers/>
+                            </scrollView>
+                            <pickerView hidden="YES" contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Owh-br-Tkg">
+                                <rect key="frame" x="0.0" y="0.0" width="375" height="152"/>
+                                <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
+                                <color key="backgroundColor" red="0.29803922770000002" green="0.29803922770000002" blue="0.29803922770000002" alpha="1" colorSpace="calibratedRGB"/>
+                                <color key="tintColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                <connections>
+                                    <outlet property="delegate" destination="7if-ke-20c" id="HSJ-IV-65Z"/>
+                                </connections>
+                            </pickerView>
                         </subviews>
                         <color key="backgroundColor" red="0.90196079019999997" green="0.90196079019999997" blue="0.90196079019999997" alpha="1" colorSpace="calibratedRGB"/>
+                        <gestureRecognizers/>
                         <constraints>
-                            <constraint firstItem="bWE-eL-ibR" firstAttribute="top" secondItem="LHB-XB-PNK" secondAttribute="top" id="1UY-rz-tfA"/>
-                            <constraint firstItem="bWE-eL-ibR" firstAttribute="bottom" secondItem="LHB-XB-PNK" secondAttribute="bottom" id="Ij0-hh-SYD"/>
-                            <constraint firstItem="jV6-ql-krJ" firstAttribute="leading" secondItem="LHB-XB-PNK" secondAttribute="leading" id="Oaa-Qb-0Fu"/>
-                            <constraint firstItem="jV6-ql-krJ" firstAttribute="bottom" secondItem="LHB-XB-PNK" secondAttribute="bottom" id="Pky-Ks-5bZ"/>
-                            <constraint firstItem="jV6-ql-krJ" firstAttribute="top" secondItem="LHB-XB-PNK" secondAttribute="top" id="bhf-9a-8Mn"/>
-                            <constraint firstItem="bWE-eL-ibR" firstAttribute="trailing" secondItem="LHB-XB-PNK" secondAttribute="trailing" id="mEC-Yl-ud6"/>
+                            <constraint firstItem="OKd-2X-5Sn" firstAttribute="bottom" secondItem="LHB-XB-PNK" secondAttribute="bottom" id="1v1-da-mkB"/>
+                            <constraint firstItem="OKd-2X-5Sn" firstAttribute="leading" secondItem="LHB-XB-PNK" secondAttribute="leading" id="FW1-Zk-swD"/>
+                            <constraint firstItem="OKd-2X-5Sn" firstAttribute="trailing" secondItem="LHB-XB-PNK" secondAttribute="trailing" id="Ol8-ds-bg6"/>
+                            <constraint firstItem="OKd-2X-5Sn" firstAttribute="top" secondItem="LHB-XB-PNK" secondAttribute="top" id="QsT-xS-bEn"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="LHB-XB-PNK"/>
                     </view>
-                    <navigationItem key="navigationItem" title="Title" id="ugp-kx-PIZ"/>
+                    <navigationItem key="navigationItem" title="Title" id="ugp-kx-PIZ">
+                        <barButtonItem key="rightBarButtonItem" title="Item" id="RoF-jf-cb3">
+                            <connections>
+                                <action selector="scaleBtnPressed:" destination="7if-ke-20c" id="KBd-2y-GQY"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
                     <connections>
-                        <outlet property="generalPanel" destination="bWE-eL-ibR" id="40s-W3-3Bh"/>
-                        <outlet property="leftPanel" destination="jV6-ql-krJ" id="6br-FQ-wWr"/>
+                        <outlet property="dropDown" destination="Owh-br-Tkg" id="jJS-SJ-6rT"/>
+                        <outlet property="scaleBtn" destination="RoF-jf-cb3" id="X7R-JA-s4k"/>
+                        <outlet property="scrollView" destination="OKd-2X-5Sn" id="uED-lM-tWV"/>
+                        <segue destination="tDa-bd-4bi" kind="show" identifier="GoToBrowser" id="Y3a-9K-wOg"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="lj3-2P-Rk8" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -678,5 +667,6 @@
     </resources>
     <inferredMetricsTieBreakers>
         <segue reference="Xrq-ga-hRk"/>
+        <segue reference="Y3a-9K-wOg"/>
     </inferredMetricsTieBreakers>
 </document>

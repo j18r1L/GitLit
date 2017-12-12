@@ -10,9 +10,8 @@
 import UIKit
 import SwiftyJSON
 class SettingsViewController: UIViewController, UISearchBarDelegate, UIWebViewDelegate {
-
+    var url = URL(string: "https://github.com/login")
     @IBOutlet weak var webView: UIWebView!
-    var backUrl = ""
     let searchBAR = UISearchBar()
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -22,7 +21,6 @@ class SettingsViewController: UIViewController, UISearchBarDelegate, UIWebViewDe
         searchBAR.text = "https://github.com/login"
         searchBAR.keyboardType = UIKeyboardType.URL
         self.navigationItem.titleView = searchBAR
-        let url = URL(string: "https://github.com/login")
         let request = URLRequest(url: url!)
         //let urlConnection = NSURLConnection(request: request, delegate: self)
         webView.loadRequest(request)
