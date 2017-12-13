@@ -13,6 +13,8 @@ import SwiftyJSON
 var authDATA = JSON("")
 var repoDATA = [String: String]()
 var newsDATA = [[String: String]]()
+var followers = [String]()
+var followersList = [String: String]()
 class Handler: UIViewController {
     @IBOutlet weak var previewGif: UIImageView!
     override func viewDidLoad() {
@@ -68,9 +70,9 @@ class Handler: UIViewController {
         ]
         Alamofire.request("https://api.github.com/users/" + login + "/following", headers: headers).responseJSON{(response) -> Void in
             let json = JSON(response.result.value!)
-            var followers = [String]()
-            for index in 0...(json.count - 1){
+            for index in 0..<json.count{
                 followers.append(json[index]["login"].string!)
+                followersList[json[index]["login"].string!] = json[index]["avatar_url"].string!
             }
             for user in followers{
                 Alamofire.request("https://api.github.com/users/"+user+"/events", headers: headers).responseJSON{(response) -> Void in
@@ -110,6 +112,7 @@ class Handler: UIViewController {
                         }
                     }
                 }
+
             }
             let homeVC = self.storyboard?.instantiateViewController(withIdentifier: "homeVC")
             self.present(homeVC!, animated: false)

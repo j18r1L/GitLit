@@ -47,7 +47,20 @@ class RepoLibTableViewController: UITableViewController {
             filehierarchy.append(File(type: .dir, name: name, url: url["url"].string!))
         }
     }
-    
+    func getDataForProfileBranch(path: String){
+        let fileManager = FileManager.default
+        
+        do {
+            let files = try fileManager.contentsOfDirectory(atPath: path)
+            for file in files{
+                let ext = ((path+"/"+file) as NSString).pathExtension
+                print("\(file) - \(ext)")
+            }
+        }
+        catch let error as NSError {
+            print("Ooops! Something went wrong: \(error)")
+        }
+    }
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return branches.count
     }
@@ -63,16 +76,21 @@ class RepoLibTableViewController: UITableViewController {
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         filehierarchy = [File]()
         index = indexPath.row
-        let headers = [
-            "Authorization" : "Basic " + UserDefaults.standard.string(forKey: "token")!
-        ]
-        let param = ["ref": branches[indexPath.row]]
-        Alamofire.request("https://api.github.com/repos/" + repo + "/contents",parameters: param, headers: headers).responseJSON{(response) -> Void in
-            let data = JSON(response.result.value!)
-            for ind in 0...data.count-1{
-                self.getDataForBranch(url: data[ind], name: data[ind]["name"].string!, dir: branches[indexPath.row])
+        if isProfileFiles{
+            getDataForProfileBranch(path: NSSearchPathForDirectoriesInDomains(.documentDirectory, .userDomainMask, true)[0]+filepath[branches[indexPath.row]]!)
+            
+        } else {
+            let headers = [
+                "Authorization" : "Basic " + UserDefaults.standard.string(forKey: "token")!
+            ]
+            let param = ["ref": branches[indexPath.row]]
+            Alamofire.request("https://api.github.com/repos/" + repo + "/contents",parameters: param, headers: headers).responseJSON{(response) -> Void in
+                let data = JSON(response.result.value!)
+                for ind in 0...data.count-1{
+                    self.getDataForBranch(url: data[ind], name: data[ind]["name"].string!, dir: branches[indexPath.row])
+                }
+                self.performSegue(withIdentifier: "GoToBranch", sender: nil)
             }
-            self.performSegue(withIdentifier: "GoToBranch", sender: nil)
         }
     }
     //

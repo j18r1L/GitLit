@@ -118,7 +118,6 @@ class TextViewerViewController: UIViewController, UITextViewDelegate, UIPickerVi
             textView.frame = CGRect(x: 55, y: 0, width: textView.frame.width, height: textView.frame.height)
             leftPanel.font = font
             leftPanel.frame = CGRect(x: 0, y: 0, width: 55, height: leftPanel.frame.height)
-            
             scrollView.contentSize = CGSize(width: scrollView.contentSize.width + 100, height: scrollView.contentSize.height + 100)
         } else if self.scaleList[row] == "25%"{
             let font = UIFont(name: "Menlo", size: 4)!
@@ -140,9 +139,4 @@ class TextViewerViewController: UIViewController, UITextViewDelegate, UIPickerVi
     @IBAction func scaleBtnPressed(_ sender: Any) {
         self.dropDown.isHidden = false
     }
-    /*
-     func pickerView(_ pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String? {
-     return scaleList[row]
-     }
- */
 }

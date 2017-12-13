@@ -52,7 +52,6 @@ class NewsTableViewController: UITableViewController {
     
     override func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
         let cell:FeedsTableViewCell = cell as! FeedsTableViewCell
-
         cell.userAvatar.downloadedFrom(link: newsDATA[indexPath.row]["avatar_url"]!)
         cell.userName.text = newsDATA[indexPath.row]["name"]
         cell.userCommit.text = newsDATA[indexPath.row]["commit"]
@@ -87,6 +86,7 @@ class NewsTableViewController: UITableViewController {
         let headers = [
             "Authorization" : "Basic " + UserDefaults.standard.string(forKey: "token")!
         ]
+        isProfileFiles = false
         let index = (recognizer.view?.tag)!
         let login = newsDATA[index]["name"]!
         Alamofire.request("https://api.github.com/users/" + login, headers: headers).responseJSON{ response in

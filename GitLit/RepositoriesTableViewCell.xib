@@ -43,6 +43,7 @@
             </tableViewCellContentView>
             <viewLayoutGuide key="safeArea" id="njF-e1-oar"/>
             <connections>
+                <outlet property="avatarImg" destination="5qc-r5-aLb" id="KZV-u4-HjE"/>
                 <outlet property="repoName" destination="6VL-RJ-Tgr" id="OhX-2M-Pbw"/>
             </connections>
             <point key="canvasLocation" x="34" y="53"/>
