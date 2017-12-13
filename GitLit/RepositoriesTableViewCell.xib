@@ -6,6 +6,7 @@
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13173"/>
+        <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -19,21 +20,30 @@
                 <rect key="frame" x="0.0" y="0.0" width="320" height="45.5"/>
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
-                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="point" translatesAutoresizingMaskIntoConstraints="NO" id="5qc-r5-aLb">
+                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="point" translatesAutoresizingMaskIntoConstraints="NO" id="5qc-r5-aLb">
                         <rect key="frame" x="8" y="8" width="27" height="27"/>
-                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                     </imageView>
-                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="6VL-RJ-Tgr">
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="6VL-RJ-Tgr">
                         <rect key="frame" x="43" y="5" width="235" height="33"/>
-                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
                         <nil key="textColor"/>
                         <nil key="highlightedColor"/>
                     </label>
                 </subviews>
+                <constraints>
+                    <constraint firstItem="5qc-r5-aLb" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leadingMargin" id="0at-0z-KbE"/>
+                    <constraint firstItem="5qc-r5-aLb" firstAttribute="centerY" secondItem="6VL-RJ-Tgr" secondAttribute="centerY" id="4C4-zP-YM9"/>
+                    <constraint firstItem="6VL-RJ-Tgr" firstAttribute="leading" secondItem="5qc-r5-aLb" secondAttribute="trailing" constant="8" symbolic="YES" id="ByJ-Mc-WTX"/>
+                    <constraint firstItem="6VL-RJ-Tgr" firstAttribute="centerX" secondItem="H2p-sc-9uM" secondAttribute="centerX" id="U6p-Ha-NHX"/>
+                    <constraint firstItem="6VL-RJ-Tgr" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="topMargin" constant="-3" id="YK7-e0-CQc"/>
+                    <constraint firstItem="5qc-r5-aLb" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="topMargin" id="b01-VN-6QF"/>
+                    <constraint firstAttribute="bottomMargin" secondItem="6VL-RJ-Tgr" secondAttribute="bottom" constant="-0.5" id="jHJ-ji-3m1"/>
+                    <constraint firstAttribute="trailingMargin" secondItem="6VL-RJ-Tgr" secondAttribute="trailing" constant="34" id="uif-9u-IxA"/>
+                </constraints>
             </tableViewCellContentView>
             <viewLayoutGuide key="safeArea" id="njF-e1-oar"/>
             <connections>
+                <outlet property="avatarImg" destination="5qc-r5-aLb" id="KZV-u4-HjE"/>
                 <outlet property="repoName" destination="6VL-RJ-Tgr" id="OhX-2M-Pbw"/>
             </connections>
             <point key="canvasLocation" x="34" y="53"/>

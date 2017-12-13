@@ -10,4 +10,6 @@ import UIKit
 
 class RepositoriesTableViewCell: UITableViewCell {
     @IBOutlet weak var repoName: UILabel!
+    @IBOutlet weak var avatarImg: UIImageView!
+    @IBOutlet weak var loadIndicator: UIActivityIndicatorView!
 }

@@ -1,8 +1,4 @@
 # GitLit
-<a href="https://github.com/j18r1L/GitLit/tree/Auth">самый свежий код</a>
-<h3>Тестовый пользователь:</h3>
-<h4>login: gitlit2017
-pass: qwerty1</h4>
 
 GitLit -  приложение GitHub, которое содержит в себе большинство функций git-а, облегчая жизнь обычному ползователю.
 
@@ -15,5 +11,5 @@ PROFILE SETTINGS
 Возмодно изменять картинку профиля, статус, место работы (обучения)
 
 <h3>Screenshots</h3>
-<img src="Profile.png" width="200"><img src="News.png" width="200"><img src="Login.png" width="200"><img src="Repos.png" width="200"><img src="Branchs.png" width="200"><img src="Branch.png" width="200"><img src="Dir.png" width="200"><img src="TextViewer.png" width="200">
+<img src="Profile.png" width="200"><img src="News.png" width="200"><img src="Login.png" width="200"><img src="Repos.png" width="200"><img src="Branch.png" width="200"><img src="Dir.png" width="200"><img src="TextViewer.png" width="200"><img src="settings.png" width="200">
 

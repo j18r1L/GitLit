@@ -6,6 +6,7 @@
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13173"/>
+        <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -19,18 +20,28 @@
                 <rect key="frame" x="0.0" y="0.0" width="320" height="43.5"/>
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
-                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="dir" translatesAutoresizingMaskIntoConstraints="NO" id="4VC-sI-d0T">
+                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="dir" translatesAutoresizingMaskIntoConstraints="NO" id="4VC-sI-d0T">
                         <rect key="frame" x="8" y="8" width="27" height="27"/>
-                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                        <constraints>
+                            <constraint firstAttribute="width" constant="27" id="IC7-QK-BEw"/>
+                        </constraints>
                     </imageView>
-                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="NBU-il-O8A">
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="NBU-il-O8A">
                         <rect key="frame" x="43" y="5" width="269" height="32"/>
-                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
                         <nil key="textColor"/>
                         <nil key="highlightedColor"/>
                     </label>
                 </subviews>
+                <constraints>
+                    <constraint firstItem="NBU-il-O8A" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="topMargin" constant="-3" id="23t-yC-Mqy"/>
+                    <constraint firstItem="NBU-il-O8A" firstAttribute="leading" secondItem="4VC-sI-d0T" secondAttribute="trailing" constant="8" symbolic="YES" id="CZQ-7E-O8M"/>
+                    <constraint firstItem="NBU-il-O8A" firstAttribute="trailing" secondItem="H2p-sc-9uM" secondAttribute="trailingMargin" id="KmT-E6-V3h"/>
+                    <constraint firstItem="4VC-sI-d0T" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="topMargin" id="YbZ-FX-WQY"/>
+                    <constraint firstItem="4VC-sI-d0T" firstAttribute="centerY" secondItem="NBU-il-O8A" secondAttribute="centerY" id="bll-r4-qYs"/>
+                    <constraint firstItem="4VC-sI-d0T" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leadingMargin" id="fF7-al-DEN"/>
+                    <constraint firstItem="NBU-il-O8A" firstAttribute="centerY" secondItem="H2p-sc-9uM" secondAttribute="centerY" id="xqq-3Q-rwe"/>
+                </constraints>
             </tableViewCellContentView>
             <viewLayoutGuide key="safeArea" id="njF-e1-oar"/>
             <connections>

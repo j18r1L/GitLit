@@ -16,6 +16,7 @@ import SwiftyJSON
 enum FileType {
     case dir
     case file
+    case img
 }
 //
 //  Структура для хранения данных файла.
@@ -33,12 +34,33 @@ class RepoLibTableViewController: UITableViewController {
     //
     func getDataForBranch(url: JSON, name: String, dir: String){
         if url["download_url"] != JSON.null{
-            filehierarchy.append(File(type: .file, name: name, url: url["download_url"].string!))
+            let type3x = name[name.index(name.endIndex, offsetBy: -3)...]
+            let type4x = name[name.index(name.endIndex, offsetBy: -4)...]
+            if type3x == "png" || type3x == "jpg" || type3x  == "bmp" || type3x == "tif" || type3x == "gif" || type3x == "PNG" || type3x == "JPG" || type3x  == "BMP" || type3x == "TIF" || type3x == "GIF"{
+                filehierarchy.append(File(type: .img, name: name, url: url["download_url"].string!))
+            }else if type4x == "jpeg" || type4x == "JPEG" || type4x == "tiff" || type4x == "TIFF"{
+                filehierarchy.append(File(type: .img, name: name, url: url["download_url"].string!))
+            } else {
+                filehierarchy.append(File(type: .file, name: name, url: url["download_url"].string!))
+            }
         } else {
             filehierarchy.append(File(type: .dir, name: name, url: url["url"].string!))
         }
     }
-    
+    func getDataForProfileBranch(path: String){
+        let fileManager = FileManager.default
+        
+        do {
+            let files = try fileManager.contentsOfDirectory(atPath: path)
+            for file in files{
+                let ext = ((path+"/"+file) as NSString).pathExtension
+                print("\(file) - \(ext)")
+            }
+        }
+        catch let error as NSError {
+            print("Ooops! Something went wrong: \(error)")
+        }
+    }
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return branches.count
     }
@@ -54,16 +76,21 @@ class RepoLibTableViewController: UITableViewController {
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         filehierarchy = [File]()
         index = indexPath.row
-        let headers = [
-            "Authorization" : "Basic " + UserDefaults.standard.string(forKey: "token")!
-        ]
-        let param = ["ref": branches[indexPath.row]]
-        Alamofire.request("https://api.github.com/repos/" + repo + "/contents",parameters: param, headers: headers).responseJSON{(response) -> Void in
-            let data = JSON(response.result.value!)
-            for ind in 0...data.count-1{
-                self.getDataForBranch(url: data[ind], name: data[ind]["name"].string!, dir: branches[indexPath.row])
+        if isProfileFiles{
+            getDataForProfileBranch(path: NSSearchPathForDirectoriesInDomains(.documentDirectory, .userDomainMask, true)[0]+filepath[branches[indexPath.row]]!)
+            
+        } else {
+            let headers = [
+                "Authorization" : "Basic " + UserDefaults.standard.string(forKey: "token")!
+            ]
+            let param = ["ref": branches[indexPath.row]]
+            Alamofire.request("https://api.github.com/repos/" + repo + "/contents",parameters: param, headers: headers).responseJSON{(response) -> Void in
+                let data = JSON(response.result.value!)
+                for ind in 0...data.count-1{
+                    self.getDataForBranch(url: data[ind], name: data[ind]["name"].string!, dir: branches[indexPath.row])
+                }
+                self.performSegue(withIdentifier: "GoToBranch", sender: nil)
             }
-            self.performSegue(withIdentifier: "GoToBranch", sender: nil)
         }
     }
     //
@@ -72,6 +99,9 @@ class RepoLibTableViewController: UITableViewController {
     override func prepare(for segue: UIStoryboardSegue, sender: Any?){
         let branchVC: BranchTableViewController = (segue.destination as? BranchTableViewController)!
         branchVC.title = branches[index]
+    }
+    override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        return 45
     }
     //
     //  Обработка кнопки возвращения назад.
