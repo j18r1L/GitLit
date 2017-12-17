@@ -27,6 +27,7 @@ struct File{
     var url: String
 }
 var filehierarchy = [File]()
+var files = [String]()
 class RepoLibTableViewController: UITableViewController {
     var repo = ""
     //
@@ -49,12 +50,27 @@ class RepoLibTableViewController: UITableViewController {
     }
     func getDataForProfileBranch(path: String){
         let fileManager = FileManager.default
-        
+
         do {
             let files = try fileManager.contentsOfDirectory(atPath: path)
             for file in files{
-                let ext = ((path+"/"+file) as NSString).pathExtension
-                print("\(file) - \(ext)")
+                print(path)
+                var isDir : ObjCBool = false
+                if fileManager.fileExists(atPath: path + "/" + file, isDirectory:&isDir) {
+                    if isDir.boolValue {
+                        print("\(file) is dir")
+                        filehierarchy.append(File(type: .dir, name: file, url: path + "/" + file))
+                    } else {
+                        let ext = ((path+"/"+file) as NSString).pathExtension
+                        if ext == "png" || ext == "jpg" || ext  == "bmp" || ext == "tif" || ext == "gif" || ext == "PNG" || ext == "JPG" || ext  == "BMP" || ext == "TIF" || ext == "GIF" || ext == "jpeg" || ext == "JPEG" || ext == "tiff" || ext == "TIFF"{
+                            filehierarchy.append(File(type: .img, name: file, url: path + "/" + file))
+                        } else {
+                            filehierarchy.append(File(type: .file, name: file, url: path + "/" + file))
+                        }
+                    }
+                } else {
+                    filehierarchy.append(File(type: .file, name: file, url: path + "/" + file))
+                }
             }
         }
         catch let error as NSError {
@@ -78,7 +94,7 @@ class RepoLibTableViewController: UITableViewController {
         index = indexPath.row
         if isProfileFiles{
             getDataForProfileBranch(path: NSSearchPathForDirectoriesInDomains(.documentDirectory, .userDomainMask, true)[0]+filepath[branches[indexPath.row]]!)
-            
+            self.performSegue(withIdentifier: "GoToBranch", sender: nil)
         } else {
             let headers = [
                 "Authorization" : "Basic " + UserDefaults.standard.string(forKey: "token")!

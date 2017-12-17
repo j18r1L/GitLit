@@ -27,6 +27,7 @@
 		584DAB511FA4A8F6003134AD /* AboutUserTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 584DAB4F1FA4A8F6003134AD /* AboutUserTableViewCell.swift */; };
 		584DAB521FA4A8F6003134AD /* AboutUserTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 584DAB501FA4A8F6003134AD /* AboutUserTableViewCell.xib */; };
 		5878648E1FBDDB110091349E /* BranchTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5878648D1FBDDB110091349E /* BranchTableViewController.swift */; };
+		5880AF961FE6BDFF008A7096 /* File.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5880AF951FE6BDFF008A7096 /* File.swift */; };
 		5885D82E1FBB51D800AE75C2 /* RepoTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5885D82D1FBB51D800AE75C2 /* RepoTableViewController.swift */; };
 		58C7A1BE1FBF2B2A00A1F550 /* TextViewerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 58C7A1BD1FBF2B2A00A1F550 /* TextViewerViewController.swift */; };
 		58C7A1C31FBF484900A1F550 /* DirTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 58C7A1C11FBF484900A1F550 /* DirTableViewCell.swift */; };
@@ -86,6 +87,7 @@
 		584DAB4F1FA4A8F6003134AD /* AboutUserTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AboutUserTableViewCell.swift; sourceTree = "<group>"; };
 		584DAB501FA4A8F6003134AD /* AboutUserTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = AboutUserTableViewCell.xib; sourceTree = "<group>"; };
 		5878648D1FBDDB110091349E /* BranchTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BranchTableViewController.swift; sourceTree = "<group>"; };
+		5880AF951FE6BDFF008A7096 /* File.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = File.swift; sourceTree = "<group>"; };
 		5885D82D1FBB51D800AE75C2 /* RepoTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RepoTableViewController.swift; sourceTree = "<group>"; };
 		58C7A1BD1FBF2B2A00A1F550 /* TextViewerViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TextViewerViewController.swift; sourceTree = "<group>"; };
 		58C7A1C11FBF484900A1F550 /* DirTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DirTableViewCell.swift; sourceTree = "<group>"; };
@@ -152,13 +154,14 @@
 				58D14FBB1FD5B046005C0F90 /* Icons.xcassets */,
 				58D5A4011F9BB824008A6AF8 /* AppDelegate.swift */,
 				581DDE861FAB215B008BBD64 /* Handler.swift */,
+				5885D82D1FBB51D800AE75C2 /* RepoTableViewController.swift */,
 				583ABB231FB2FB060005749C /* TapBarController.swift */,
 				58D5A4281F9BB935008A6AF8 /* AuthViewController.swift */,
 				58D8FEFC1FA0E5C8006F8773 /* HomeTableViewController.swift */,
 				583ABB251FB2FD460005749C /* NewsTableViewController.swift */,
-				5885D82D1FBB51D800AE75C2 /* RepoTableViewController.swift */,
 				58CCCC711FBC149500A152B6 /* RepoLibTableViewController.swift */,
 				5878648D1FBDDB110091349E /* BranchTableViewController.swift */,
+				5880AF951FE6BDFF008A7096 /* File.swift */,
 				5816446F1FC47A09001AD5C3 /* ImgTableViewCell.swift */,
 				581644701FC47A09001AD5C3 /* ImgTableViewCell.xib */,
 				58C7A1BD1FBF2B2A00A1F550 /* TextViewerViewController.swift */,
@@ -305,6 +308,7 @@
 				581DDE871FAB215B008BBD64 /* Handler.swift in Sources */,
 				58CCCC721FBC149500A152B6 /* RepoLibTableViewController.swift in Sources */,
 				581644741FC47D32001AD5C3 /* ImgViewerViewController.swift in Sources */,
+				5880AF961FE6BDFF008A7096 /* File.swift in Sources */,
 				58D14FBA1FD5A29B005C0F90 /* SettingsViewController.swift in Sources */,
 				5878648E1FBDDB110091349E /* BranchTableViewController.swift in Sources */,
 				584DAB511FA4A8F6003134AD /* AboutUserTableViewCell.swift in Sources */,

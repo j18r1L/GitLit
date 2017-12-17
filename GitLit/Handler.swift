@@ -15,6 +15,7 @@ var repoDATA = [String: String]()
 var newsDATA = [[String: String]]()
 var followers = [String]()
 var followersList = [String: String]()
+var isWebConnect = true
 class Handler: UIViewController {
     @IBOutlet weak var previewGif: UIImageView!
     override func viewDidLoad() {
@@ -35,7 +36,9 @@ class Handler: UIViewController {
                 self.repoData(login: authDATA["login"].string!)
             }
             else {
-                self.performSegue(withIdentifier: "GoToError", sender: nil)
+                isWebConnect = false
+                let homeVC = self.storyboard?.instantiateViewController(withIdentifier: "homeVC")
+                self.present(homeVC!, animated: false)
             }
         }
     }
@@ -57,6 +60,7 @@ class Handler: UIViewController {
                 for index in 0..<json.count{
                     repoDATA[json[index]["full_name"].string!] = json[index]["url"].string!
                 }
+                UserDefaults.standard.set(repoDATA, forKey: "repoDATA")
                 self.newsData(login: login)
             }
         }

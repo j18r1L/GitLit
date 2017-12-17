@@ -17,7 +17,9 @@ class ImgViewerViewController: UIViewController, UIScrollViewDelegate {
         super.viewDidLoad()
         self.scrollView.minimumZoomScale = 1.0
         self.scrollView.maximumZoomScale = 6.0
-        image.downloadedFrom(link: url)
+        if isProfileFiles{
+            image.image = UIImage(contentsOfFile: url)
+        } else { image.downloadedFrom(link: url)}
         
     }
     func viewForZooming(in scrollView: UIScrollView) -> UIView? {

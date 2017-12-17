@@ -26,8 +26,14 @@ class TextViewerViewController: UIViewController, UITextViewDelegate, UIPickerVi
     var leftPanel = UITextView()
     override func viewDidLoad() {
         super.viewDidLoad()
+        dropDown.layer.cornerRadius = 10
         scaleBtn.title = "100%"
-        let path = NSSearchPathForDirectoriesInDomains(.documentDirectory, .userDomainMask, true)[0] + "/" + filename
+        var path = ""
+        if isProfileFiles{
+            path = filename
+        } else{
+            path = NSSearchPathForDirectoriesInDomains(.documentDirectory, .userDomainMask, true)[0] + "/" + filename
+        }
         var text = ""
         do {
             let contentsOfFile = try NSString(contentsOfFile: path, encoding: String.Encoding.utf8.rawValue)
