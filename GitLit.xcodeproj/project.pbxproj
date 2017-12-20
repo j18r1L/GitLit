@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		4D21FD441FEAB32C003F8388 /* Icons.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 4D21FD431FEAB32C003F8388 /* Icons.xcassets */; };
 		5816446B1FC370D6001AD5C3 /* LogoTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 581644691FC370D6001AD5C3 /* LogoTableViewCell.swift */; };
 		5816446C1FC370D6001AD5C3 /* LogoTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5816446A1FC370D6001AD5C3 /* LogoTableViewCell.xib */; };
 		5816446E1FC46718001AD5C3 /* UserTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5816446D1FC46718001AD5C3 /* UserTableViewController.swift */; };
@@ -38,6 +39,7 @@
 		58D5A4171F9BB824008A6AF8 /* GitLitTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 58D5A4161F9BB824008A6AF8 /* GitLitTests.swift */; };
 		58D5A4291F9BB935008A6AF8 /* AuthViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 58D5A4281F9BB935008A6AF8 /* AuthViewController.swift */; };
 		58D8FEFD1FA0E5C8006F8773 /* HomeTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 58D8FEFC1FA0E5C8006F8773 /* HomeTableViewController.swift */; };
+		E7837E92BC6C4CB81ABFFB0A /* Pods_GitLit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A5754216DBCE55EA64D9EB73 /* Pods_GitLit.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -66,6 +68,8 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		1A21BBB886587D365311399E /* Pods-GitLit.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-GitLit.debug.xcconfig"; path = "Pods/Target Support Files/Pods-GitLit/Pods-GitLit.debug.xcconfig"; sourceTree = "<group>"; };
+		4D21FD431FEAB32C003F8388 /* Icons.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Icons.xcassets; sourceTree = "<group>"; };
 		581644691FC370D6001AD5C3 /* LogoTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LogoTableViewCell.swift; sourceTree = "<group>"; };
 		5816446A1FC370D6001AD5C3 /* LogoTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = LogoTableViewCell.xib; sourceTree = "<group>"; };
 		5816446D1FC46718001AD5C3 /* UserTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserTableViewController.swift; sourceTree = "<group>"; };
@@ -101,6 +105,8 @@
 		58D5A4181F9BB824008A6AF8 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		58D5A4281F9BB935008A6AF8 /* AuthViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthViewController.swift; sourceTree = "<group>"; };
 		58D8FEFC1FA0E5C8006F8773 /* HomeTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeTableViewController.swift; sourceTree = "<group>"; };
+		77A3B57B9D4A485543E9238F /* Pods-GitLit.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-GitLit.release.xcconfig"; path = "Pods/Target Support Files/Pods-GitLit/Pods-GitLit.release.xcconfig"; sourceTree = "<group>"; };
+		A5754216DBCE55EA64D9EB73 /* Pods_GitLit.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_GitLit.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -110,6 +116,7 @@
 			files = (
 				58345BC51FC2161C006BCCC1 /* SwiftyJSON.framework in Frameworks */,
 				58345BC11FC21614006BCCC1 /* Alamofire.framework in Frameworks */,
+				E7837E92BC6C4CB81ABFFB0A /* Pods_GitLit.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -123,6 +130,15 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		555110471CFDA98CC5B9E5F3 /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				1A21BBB886587D365311399E /* Pods-GitLit.debug.xcconfig */,
+				77A3B57B9D4A485543E9238F /* Pods-GitLit.release.xcconfig */,
+			);
+			name = Pods;
+			sourceTree = "<group>";
+		};
 		58D5A3F51F9BB824008A6AF8 = {
 			isa = PBXGroup;
 			children = (
@@ -131,6 +147,8 @@
 				58D5A4001F9BB824008A6AF8 /* GitLit */,
 				58D5A4151F9BB824008A6AF8 /* GitLitTests */,
 				58D5A3FF1F9BB824008A6AF8 /* Products */,
+				555110471CFDA98CC5B9E5F3 /* Pods */,
+				FB93EEF12F2271B2FE28447E /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -148,6 +166,7 @@
 			children = (
 				58345BBF1FC1D43A006BCCC1 /* Media.xcassets */,
 				58D14FBB1FD5B046005C0F90 /* Icons.xcassets */,
+				4D21FD431FEAB32C003F8388 /* Icons.xcassets */,
 				58D5A4011F9BB824008A6AF8 /* AppDelegate.swift */,
 				581DDE861FAB215B008BBD64 /* Handler.swift */,
 				583ABB231FB2FB060005749C /* TapBarController.swift */,
@@ -188,6 +207,14 @@
 			path = GitLitTests;
 			sourceTree = "<group>";
 		};
+		FB93EEF12F2271B2FE28447E /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				A5754216DBCE55EA64D9EB73 /* Pods_GitLit.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -195,10 +222,13 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 58D5A41B1F9BB824008A6AF8 /* Build configuration list for PBXNativeTarget "GitLit" */;
 			buildPhases = (
+				6F2706853354AA829B1B35C6 /* [CP] Check Pods Manifest.lock */,
 				58D5A3FA1F9BB824008A6AF8 /* Sources */,
 				58D5A3FB1F9BB824008A6AF8 /* Frameworks */,
 				58D5A3FC1F9BB824008A6AF8 /* Resources */,
 				58345BC31FC21614006BCCC1 /* Embed Frameworks */,
+				39BD986DB6D6E1B2FE373E62 /* [CP] Embed Pods Frameworks */,
+				6B5CDBAFB250EFCB5994ECC0 /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -273,6 +303,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				584DAB521FA4A8F6003134AD /* AboutUserTableViewCell.xib in Resources */,
+				4D21FD441FEAB32C003F8388 /* Icons.xcassets in Resources */,
 				5822B4BD1FB31C1900FE9AA2 /* FeedsTableViewCell.xib in Resources */,
 				581DDE8B1FAB2835008BBD64 /* RepositoriesTableViewCell.xib in Resources */,
 				58D5A40C1F9BB824008A6AF8 /* LaunchScreen.storyboard in Resources */,
@@ -291,6 +322,64 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		39BD986DB6D6E1B2FE373E62 /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+				"${SRCROOT}/Pods/Target Support Files/Pods-GitLit/Pods-GitLit-frameworks.sh",
+				"${BUILT_PRODUCTS_DIR}/Alamofire/Alamofire.framework",
+				"${BUILT_PRODUCTS_DIR}/AlamofireImage/AlamofireImage.framework",
+				"${BUILT_PRODUCTS_DIR}/SwiftyJSON/SwiftyJSON.framework",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputPaths = (
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Alamofire.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/AlamofireImage.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SwiftyJSON.framework",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-GitLit/Pods-GitLit-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		6B5CDBAFB250EFCB5994ECC0 /* [CP] Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-GitLit/Pods-GitLit-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		6F2706853354AA829B1B35C6 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-GitLit-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		58D5A3FA1F9BB824008A6AF8 /* Sources */ = {
@@ -465,6 +554,7 @@
 		};
 		58D5A41C1F9BB824008A6AF8 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 1A21BBB886587D365311399E /* Pods-GitLit.debug.xcconfig */;
 			buildSettings = {
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = VS23X76F7Z;
@@ -484,6 +574,7 @@
 		};
 		58D5A41D1F9BB824008A6AF8 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 77A3B57B9D4A485543E9238F /* Pods-GitLit.release.xcconfig */;
 			buildSettings = {
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = VS23X76F7Z;
