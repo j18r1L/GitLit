@@ -158,6 +158,8 @@ class UserTableViewController: UITableViewController {
                 for ind in 0...jsonResp.count-1{
                     branches.append(jsonResp[ind]["name"].string!)
                 }
+                loadindicator.stopAnimating()
+                loadindicator.isHidden = true
                 self.performSegue(withIdentifier: "GoToRepoFromAtherUser", sender: nil)
             }
         }
@@ -170,6 +172,8 @@ class UserTableViewController: UITableViewController {
         index = indexPath.row
         switch sections[indexPath.section].items[0] {
         case .Repo:
+            loadindicator.startAnimating()
+            loadindicator.isHidden = false
             getDataForRepo(url: otherRepoData[repolist[indexPath.row]]!)
         case .User:
             return

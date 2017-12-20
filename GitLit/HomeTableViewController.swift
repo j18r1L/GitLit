@@ -48,11 +48,14 @@ private struct Section {
 
 var isProfileFiles = false
 var filepath = [String: String]()
+var branches = [String]()
 
+let loadindicator = UIActivityIndicatorView()
 class HomeTableViewController: UITableViewController{
     private var sections = [Section]()
     var dataCell = [userData]()
     var repolist = [String]()
+    
     func avatarImage(url: String) -> UIImage{
         let imgURL: NSURL = NSURL(string: url)!
         let imgData = NSData(contentsOf: imgURL as URL)
@@ -64,6 +67,8 @@ class HomeTableViewController: UITableViewController{
     //
     override func viewDidLoad() {
         self.tableView.contentInset = UIEdgeInsetsMake(0, 0, 0, 0)
+        self.navigationController?.navigationBar.addSubview(loadindicator)
+        loadindicator.frame = CGRect(x: (navigationController?.navigationBar.frame.width)! / 2 , y: (navigationController?.navigationBar.frame.height)! / 6, width: loadindicator.frame.width, height: loadindicator.frame.height)
         for name in repoDATA.keys{
             repolist.append(name)
         }
@@ -79,30 +84,29 @@ class HomeTableViewController: UITableViewController{
                 bio: "",
                 image: avatarImage(url: authDATA["avatar_url"].string!),
                 url: nil
-            )]
+                )]
         } else if authDATA["name"].string == nil{
             dataCell = [userData(
                 name: "",
                 bio: authDATA["bio"].string!,
                 image: avatarImage(url: authDATA["avatar_url"].string!),
                 url: nil
-            )]
+                )]
         } else if authDATA["bio"].string == nil{
             dataCell = [userData(
                 name: authDATA["name"].string!,
                 bio: "",
                 image: avatarImage(url: authDATA["avatar_url"].string!),
                 url: nil
-            )]
+                )]
         } else {
             dataCell = [userData(
                 name: authDATA["name"].string!,
                 bio: authDATA["bio"].string!,
                 image: avatarImage(url: authDATA["avatar_url"].string!),
                 url: nil
-            )]
+                )]
         }
-
     }
     override func numberOfSections(in tableView: UITableView) -> Int {
         return sections.count
@@ -126,6 +130,7 @@ class HomeTableViewController: UITableViewController{
         switch sections[indexPath.section].items[0] {
         case .User:
             let cell = Bundle.main.loadNibNamed("AboutUserTableViewCell", owner: self, options: nil)?.first as! AboutUserTableViewCell
+            
             tableView.sectionFooterHeight = 20
             cell.backGround.clipsToBounds = true
             cell.backGround.layer.cornerRadius = 20
@@ -135,6 +140,7 @@ class HomeTableViewController: UITableViewController{
             cell.userBio.text = dataCell[indexPath.row].bio
             cell.userName.text = dataCell[indexPath.row].name
             cell.selectionStyle = UITableViewCellSelectionStyle.none
+            
             return cell
         case .Repo:
             let cell = Bundle.main.loadNibNamed("RepositoriesTableViewCell", owner: self, options: nil)?.first as! RepositoriesTableViewCell
@@ -188,15 +194,18 @@ class HomeTableViewController: UITableViewController{
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         switch sections[indexPath.section].items[0] {
         case .Repo:
-            //getBranch(url: repoDATA[repolist[indexPath.row]]!, repo: repolist[indexPath.row])
-            tabBarController?.selectedIndex = 2
+            getBranch(url: repoDATA[repolist[indexPath.row]]!, repo: repolist[indexPath.row])
         case .follower:
+            loadindicator.startAnimating()
+            loadindicator.isHidden = false
+            
             isProfileFiles = false
+            loadindicator.startAnimating()
             Alamofire.request("https://api.github.com/users/" + followers[indexPath.row]).responseJSON{ response in
                 otherUserData = JSON(response.result.value!)
                 Alamofire.request("https://api.github.com/users/" + followers[indexPath.row] + "/repos").responseJSON{(response) -> Void in
                     let json = JSON(response.result.value!)
-                    for index in 0...(json.count-1){
+                    for index in 0..<json.count{
                         otherRepoData[json[index]["full_name"].string!] = json[index]["url"].string!
                     }
                     Alamofire.request("https://api.github.com/users/" + followers[indexPath.row] + "/subscriptions").responseJSON{ response in
@@ -204,6 +213,8 @@ class HomeTableViewController: UITableViewController{
                         for index in 0..<json.count{
                             otherRepoData[json[index]["full_name"].string!] = json[index]["url"].string!
                         }
+                        loadindicator.stopAnimating()
+                        loadindicator.isHidden = true
                         self.performSegue(withIdentifier: "GoToUser", sender: nil)
                     }
                 }
@@ -214,7 +225,12 @@ class HomeTableViewController: UITableViewController{
             return
         }
     }
+    //
+    //  Данная функция поготавливает содержмое ветки для оторажения
+    //
     func getBranch(url: String, repo: String){
+        loadindicator.startAnimating()
+        loadindicator.isHidden = false
         let headers = [
             "Authorization" : "Basic " + UserDefaults.standard.string(forKey: "token")!
         ]
@@ -235,10 +251,17 @@ class HomeTableViewController: UITableViewController{
                     filepath[branch] = "/" + repo + "/" + branch
                 }
             }
+            UserDefaults.standard.set(branches, forKey: repo)
+            UserDefaults.standard.set(filepath, forKey: repo + "path")
             isProfileFiles = true
+            loadindicator.stopAnimating()
+            loadindicator.isHidden = true
             self.performSegue(withIdentifier: "GoToRepo", sender: nil)
         }
     }
+    //
+    //  Данная функция кэширует данные пользовательской директории.
+    //
     func getBranchesData(url: JSON, repo: String, dir: String, name: String){
         let headers = [
             "Authorization" : "Basic " + UserDefaults.standard.string(forKey: "token")!

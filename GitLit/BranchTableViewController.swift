@@ -11,10 +11,22 @@ import UIKit
 import Alamofire
 import SwiftyJSON
 var backFileHierarchy = [File]()
-class BranchTableViewController: UITableViewController {
+var buff = 0
+class BranchTableViewController: UITableViewController{
     
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return filehierarchy.count
+    }
+    override func viewDidLoad() {
+        super.viewDidLoad()
+
+        if isWebConnect == false{
+            if buff == 0{
+                navigationItem.leftBarButtonItem?.isEnabled = false
+            } else {
+                navigationItem.leftBarButtonItem?.isEnabled = true
+            }
+        }
     }
     //
     //  Ниже можно наблюдать двольно странное условие.
@@ -64,42 +76,67 @@ class BranchTableViewController: UITableViewController {
     //
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         index = indexPath.row
-        if index <= filehierarchy.count{
-            switch filehierarchy[indexPath.row].type {
+        if isProfileFiles {
+            buff += 1
+            switch filehierarchy[indexPath.row].type{
             case .file:
-                let headers = [
-                    "Authorization" : "Basic " + UserDefaults.standard.string(forKey: "token")!
-                ]
-                let destination: DownloadRequest.DownloadFileDestination = { _, _ in
-                    var documentsURL = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask)[0]
-                    documentsURL.appendPathComponent(filehierarchy[indexPath.row].name)
-                    return (documentsURL, [.removePreviousFile])
-                }
-                Alamofire.download(filehierarchy[indexPath.row].url, method: .get, encoding: JSONEncoding.default, headers: headers, to: destination).downloadProgress{ DefaultDownloadResponse in
-                    self.performSegue(withIdentifier: "GoToText", sender: nil)
-                }
-                
+                self.performSegue(withIdentifier: "GoToText", sender: nil)
             case .dir:
                 let FileVC = self.storyboard?.instantiateViewController(withIdentifier: "FileHierarchy")
-                let headers = [
-                    "Authorization" : "Basic " + UserDefaults.standard.string(forKey: "token")!
-                ]
-                Alamofire.request(filehierarchy[indexPath.row].url, headers: headers).responseJSON{(response) -> Void in
-                    let data = JSON(response.result.value!)
-                    FileVC?.title = filehierarchy[indexPath.row].name
-                    backFileHierarchy = filehierarchy
-                    filehierarchy = [File]()
-                    for ind in 0...data.count-1{
-                        self.getDataForBranch(url: data[ind], name: data[ind]["name"].string!)
-                    }
-                    self.navigationController?.pushViewController(FileVC!, animated: true)
-                }
+                FileVC?.title = filehierarchy[indexPath.row].name
+                backFileHierarchy = filehierarchy
+                filehierarchy = [File]()
+                RepoLibTableViewController().getDataForProfileBranch(path: backFileHierarchy[indexPath.row].url)
+                self.navigationController?.pushViewController(FileVC!, animated: true)
             case .img:
                 self.performSegue(withIdentifier: "GoToImg", sender: nil)
             }
         } else {
-            print("Error: Index out of range!")
-            self.navigationController?.popViewController(animated: false)
+            if index <= filehierarchy.count{
+                loadindicator.startAnimating()
+                loadindicator.isHidden = false
+                switch filehierarchy[indexPath.row].type {
+                case .file:
+                    let headers = [
+                        "Authorization" : "Basic " + UserDefaults.standard.string(forKey: "token")!
+                    ]
+                    let destination: DownloadRequest.DownloadFileDestination = { _, _ in
+                        var documentsURL = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask)[0]
+                        documentsURL.appendPathComponent(filehierarchy[indexPath.row].name)
+                        return (documentsURL, [.removePreviousFile])
+                    }
+                    Alamofire.download(filehierarchy[indexPath.row].url, method: .get, encoding: JSONEncoding.default, headers: headers, to: destination).downloadProgress{ DefaultDownloadResponse in
+                        loadindicator.stopAnimating()
+                        loadindicator.isHidden = true
+                        self.performSegue(withIdentifier: "GoToText", sender: nil)
+                    }
+                    
+                case .dir:
+                    let FileVC = self.storyboard?.instantiateViewController(withIdentifier: "FileHierarchy")
+                    let headers = [
+                        "Authorization" : "Basic " + UserDefaults.standard.string(forKey: "token")!
+                    ]
+                    Alamofire.request(filehierarchy[indexPath.row].url, headers: headers).responseJSON{(response) -> Void in
+                        let data = JSON(response.result.value!)
+                        FileVC?.title = filehierarchy[indexPath.row].name
+                        backFileHierarchy = filehierarchy
+                        filehierarchy = [File]()
+                        for ind in 0...data.count-1{
+                            self.getDataForBranch(url: data[ind], name: data[ind]["name"].string!)
+                        }
+                        loadindicator.stopAnimating()
+                        loadindicator.isHidden = true
+                        self.navigationController?.pushViewController(FileVC!, animated: true)
+                    }
+                case .img:
+                    loadindicator.stopAnimating()
+                    loadindicator.isHidden = true
+                    self.performSegue(withIdentifier: "GoToImg", sender: nil)
+                }
+            } else {
+                print("Error: Index out of range!")
+                self.navigationController?.popViewController(animated: false)
+            }
         }
     }
     //
@@ -115,7 +152,9 @@ class BranchTableViewController: UITableViewController {
         case .file:
             let textVC: TextViewerViewController = (segue.destination as? TextViewerViewController)!
             textVC.title = filehierarchy[index].name
-            textVC.filename = filehierarchy[index].name
+            if isProfileFiles{
+                textVC.filename = filehierarchy[index].url
+            } else {textVC.filename = filehierarchy[index].name}
         case .img:
             let imgVC: ImgViewerViewController = (segue.destination as? ImgViewerViewController)!
             imgVC.title = filehierarchy[index].name
@@ -129,6 +168,7 @@ class BranchTableViewController: UITableViewController {
     //
     @IBAction func backBtnPressed(_ sender: Any) {
         filehierarchy = backFileHierarchy
+        buff -= 1
         self.navigationController?.popViewController(animated: true)
     }
     override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {

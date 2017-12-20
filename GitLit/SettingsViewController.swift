@@ -9,12 +9,17 @@
 //
 import UIKit
 import SwiftyJSON
-class SettingsViewController: UIViewController, UISearchBarDelegate, UIWebViewDelegate {
+var backurl = "https://github.com/login"
+class SettingsViewController: UIViewController, UISearchBarDelegate, UIWebViewDelegate, UINavigationControllerDelegate {
     var url = URL(string: "https://github.com/login")
+    
     @IBOutlet weak var webView: UIWebView!
+    
     let searchBAR = UISearchBar()
     override func viewDidLoad() {
         super.viewDidLoad()
+       
+        
         searchBAR.showsCancelButton = false
         searchBAR.placeholder = "Search"
         searchBAR.delegate = self
@@ -36,6 +41,7 @@ class SettingsViewController: UIViewController, UISearchBarDelegate, UIWebViewDe
     //
     @IBAction func webBackBtn(_ sender: Any) {
         if webView.canGoBack {
+            searchBAR.text = backurl
             webView.goBack()
         }
     }
@@ -53,6 +59,9 @@ class SettingsViewController: UIViewController, UISearchBarDelegate, UIWebViewDe
         authDATA = JSON("")
         repoDATA = [String: String]()
         newsDATA = [[String: String]]()
+        followers = [String]()
+        followersList = [String: String]()
+        isWebConnect = true
         let AuthVC = self.storyboard?.instantiateViewController(withIdentifier: "AuthVC")
         self.present(AuthVC!, animated: false)
     }
@@ -63,7 +72,6 @@ class SettingsViewController: UIViewController, UISearchBarDelegate, UIWebViewDe
         searchBar.resignFirstResponder()
         if let url = URL(string: searchBAR.text!){
             webView.loadRequest(URLRequest(url: url))
-            searchBar.text = ""
         } else{
             webView.reload()
         }

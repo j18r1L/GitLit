@@ -13,8 +13,18 @@ class TapBarController: UITabBarController {
     //
     //  В качетсве заголовка окна устанавливается логин пользователя.
     //
+    @IBOutlet weak var tapbar: UITabBar!
     override func viewDidLoad() {
         super.viewDidLoad()
-        self.title = authDATA["login"].string!
+        //
+        //  В случае, если отсутствует подключение к интернету устанавливается соответствующий заголовок.
+        //
+        if isWebConnect {
+            self.title = authDATA["login"].string!
+        } else {
+            self.title = "Connection error."
+            tapbar.isHidden = true
+        }
+        
     }
 }

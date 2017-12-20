@@ -15,6 +15,7 @@ var repoDATA = [String: String]()
 var newsDATA = [[String: String]]()
 var followers = [String]()
 var followersList = [String: String]()
+var isWebConnect = true
 class Handler: UIViewController {
     @IBOutlet weak var previewGif: UIImageView!
     override func viewDidLoad() {
@@ -26,19 +27,60 @@ class Handler: UIViewController {
     //  переменную и вызывает функцию repoDATA(login).
     //
     func userData(){
-        let headers = [
-            "Authorization" : "Basic " + UserDefaults.standard.string(forKey: "token")!
-        ]
-        Alamofire.request("https://api.github.com/user", headers: headers).responseJSON{(response) -> Void in
-            if response.result.value != nil {
+        if NetworkReachabilityManager()!.isReachable{
+            let headers = [
+                "Authorization" : "Basic " + UserDefaults.standard.string(forKey: "token")!
+            ]
+            Alamofire.request("https://api.github.com/user", headers: headers).responseJSON{(response) -> Void in
                 authDATA = JSON(response.result.value!)
                 self.repoData(login: authDATA["login"].string!)
             }
-            else {
-                self.performSegue(withIdentifier: "GoToError", sender: nil)
+        } else {
+            Alamofire.request("https://").responseJSON{resonse in
+                isWebConnect = false
+                let homeVC = self.storyboard?.instantiateViewController(withIdentifier: "OfflineFile")
+                isProfileFiles = true
+                self.getOfflineData()
+                self.present(homeVC!, animated: false)
             }
         }
     }
+    
+    func getOfflineData(){
+
+        let fileManager = FileManager.default
+        let path = NSSearchPathForDirectoriesInDomains(.documentDirectory, .userDomainMask, true)[0]
+        do {
+            let files = try fileManager.contentsOfDirectory(atPath: path)
+            for file in files{
+                var isDir : ObjCBool = false
+                if fileManager.fileExists(atPath: path + "/" + file, isDirectory:&isDir) {
+                    if isDir.boolValue {
+                        filehierarchy.append(File(type: .dir, name: file, url: path + "/" + file))
+                    } else {
+                        let ext = ((path+"/"+file) as NSString).pathExtension
+                        do {
+                            try fileManager.removeItem(atPath: path + "/" + file)
+                        }
+                        catch let error as NSError {
+                            print("Ooops! Something went wrong: \(error)")
+                        }
+                        if ext == "png" || ext == "jpg" || ext  == "bmp" || ext == "tif" || ext == "gif" || ext == "PNG" || ext == "JPG" || ext  == "BMP" || ext == "TIF" || ext == "GIF" || ext == "jpeg" || ext == "JPEG" || ext == "tiff" || ext == "TIFF"{
+                            filehierarchy.append(File(type: .img, name: file, url: path + "/" + file))
+                        } else {
+                            filehierarchy.append(File(type: .file, name: file, url: path + "/" + file))
+                        }
+                    }
+                } else {
+                    filehierarchy.append(File(type: .file, name: file, url: path + "/" + file))
+                }
+            }
+        }
+        catch let error as NSError {
+            print("Ooops! Something went wrong: \(error)")
+        }
+    }
+    
     //
     //  Данная функция записывает данные о репозитории пользователя в глобольную переменную
     //  и вызывает функцию newsData(login).
@@ -49,15 +91,25 @@ class Handler: UIViewController {
         ]
         Alamofire.request("https://api.github.com/users/" + login + "/repos", headers: headers).responseJSON{(response) -> Void in
             let json = JSON(response.result.value!)
-            for index in 0...(json.count-1){
-                repoDATA[json[index]["full_name"].string!] = json[index]["url"].string!
-            }
-            Alamofire.request("https://api.github.com/users/" + login + "/subscriptions", headers: headers).responseJSON{ response in
-                let json = JSON(response.result.value!)
-                for index in 0..<json.count{
+            if response.result.value != nil{
+                for index in 0...(json.count-1){
                     repoDATA[json[index]["full_name"].string!] = json[index]["url"].string!
                 }
-                self.newsData(login: login)
+                Alamofire.request("https://api.github.com/users/" + login + "/subscriptions", headers: headers).responseJSON{ response in
+                    let json = JSON(response.result.value!)
+                    for index in 0..<json.count{
+                        repoDATA[json[index]["full_name"].string!] = json[index]["url"].string!
+                    }
+                    UserDefaults.standard.set(repoDATA, forKey: "repoDATA")
+                    self.newsData(login: login)
+                }
+            } else {
+                isWebConnect = false
+                let homeVC = self.storyboard?.instantiateViewController(withIdentifier: "OfflineFile")
+                isProfileFiles = true
+                self.getOfflineData()
+                
+                self.present(homeVC!, animated: false)
             }
         }
     }

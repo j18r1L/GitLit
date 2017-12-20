@@ -15,5 +15,5 @@ PROFILE SETTINGS
 Возмодно изменять картинку профиля, статус, место работы (обучения)
 
 <h3>Screenshots</h3>
-<img src="Profile.png" width="200"><img src="News.png" width="200"><img src="Login.png" width="200"><img src="Branches.png" width="200"><img src="Dir.png" width="200"><img src="TextViewer.png" width="200"><img src="settings.png" width="200"><img src="TextViewerScale.png" width="200"><img src="otherUser.png" width="200">
+<img src="Profile.jpg" width="200"><img src="News.jpg" width="200"><img src="Login.jpg" width="200"><img src="Branches.png" width="200"><img src="Dir.png" width="200"><img src="TextViewer.png" width="200"><img src="Settings.png" width="200"><img src="TextViewetScale.jpg" width="200"><img src="otherUser.png" width="200"><img src="ShowImg.jpg" width="200">
 

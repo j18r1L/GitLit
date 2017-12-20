@@ -26,8 +26,14 @@ class TextViewerViewController: UIViewController, UITextViewDelegate, UIPickerVi
     var leftPanel = UITextView()
     override func viewDidLoad() {
         super.viewDidLoad()
+        dropDown.layer.cornerRadius = 10
         scaleBtn.title = "100%"
-        let path = NSSearchPathForDirectoriesInDomains(.documentDirectory, .userDomainMask, true)[0] + "/" + filename
+        var path = ""
+        if isProfileFiles{
+            path = filename
+        } else{
+            path = NSSearchPathForDirectoriesInDomains(.documentDirectory, .userDomainMask, true)[0] + "/" + filename
+        }
         var text = ""
         do {
             let contentsOfFile = try NSString(contentsOfFile: path, encoding: String.Encoding.utf8.rawValue)
@@ -45,11 +51,10 @@ class TextViewerViewController: UIViewController, UITextViewDelegate, UIPickerVi
         
         let maxSize = CGSize(width: 9999, height: 9999)
         let font = UIFont(name: "Menlo", size: 16)!
-        //key function is coming!!!
         let strSize = (text as NSString).boundingRect(with: maxSize, options: NSStringDrawingOptions.usesLineFragmentOrigin, attributes: [NSAttributedStringKey.font : font], context: nil)
         
-        let frame = CGRect(x: 45, y: 0, width: strSize.width+50, height: strSize.height+100)
-        let frameForPanel = CGRect(x: 0, y: 0, width: 45, height: strSize.height+100)
+        let frame = CGRect(x: 50, y: 0, width: strSize.width+50, height: strSize.height+100)
+        let frameForPanel = CGRect(x: 0, y: 0, width: 50, height: strSize.height+100)
         textView = UITextView(frame: frame)
         leftPanel = UITextView(frame: frameForPanel)
         
@@ -103,15 +108,15 @@ class TextViewerViewController: UIViewController, UITextViewDelegate, UIPickerVi
         if self.scaleList[row] == "100%"{
             let font = UIFont(name: "Menlo", size: 16)!
             textView.font = font
-            textView.frame = CGRect(x: 45, y: 0, width: textView.frame.width, height: textView.frame.height)
+            textView.frame = CGRect(x: 50, y: 0, width: textView.frame.width, height: textView.frame.height)
             leftPanel.font = font
-            leftPanel.frame = CGRect(x: 0, y: 0, width: 45, height: leftPanel.frame.height)
+            leftPanel.frame = CGRect(x: 0, y: 0, width: 50, height: leftPanel.frame.height)
         } else if self.scaleList[row] == "50%"{
             let font = UIFont(name: "Menlo", size: 8)!
             textView.font = font
-            textView.frame = CGRect(x: 35, y: 0, width: textView.frame.width, height: textView.frame.height)
+            textView.frame = CGRect(x: 30, y: 0, width: textView.frame.width, height: textView.frame.height)
             leftPanel.font = font
-            leftPanel.frame = CGRect(x: 0, y: 0, width: 35, height: leftPanel.frame.height)
+            leftPanel.frame = CGRect(x: 0, y: 0, width: 30, height: leftPanel.frame.height)
         } else if self.scaleList[row] == "150%"{
             let font = UIFont(name: "Menlo", size: 24)!
             textView.font = font

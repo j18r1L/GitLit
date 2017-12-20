@@ -51,14 +51,13 @@ class NewsTableViewController: UITableViewController {
     }
     
     override func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
+        
         let cell:FeedsTableViewCell = cell as! FeedsTableViewCell
         cell.userAvatar.downloadedFrom(link: newsDATA[indexPath.row]["avatar_url"]!)
         cell.userName.text = newsDATA[indexPath.row]["name"]
+        //cell.userCommit.text = newsDATA[indexPath.row]["commit"]
         cell.userCommit.text = newsDATA[indexPath.row]["commit"]
-        if newsDATA[indexPath.row]["commit"] == ""{
-            cell.userCommit.text = newsDATA[indexPath.row]["action"]
-            cell.userAction.text = ""
-        }
+        cell.userAction.text = newsDATA[indexPath.row]["action"]
         cell.userRepo.text = newsDATA[indexPath.row]["repo"]
         cell.commitTime.text = newsDATA[indexPath.row]["time"]
         cell.userAvatar.clipsToBounds = true

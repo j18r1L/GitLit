@@ -27,6 +27,7 @@ struct File{
     var url: String
 }
 var filehierarchy = [File]()
+var files = [String]()
 class RepoLibTableViewController: UITableViewController {
     var repo = ""
     //
@@ -49,12 +50,25 @@ class RepoLibTableViewController: UITableViewController {
     }
     func getDataForProfileBranch(path: String){
         let fileManager = FileManager.default
-        
+
         do {
             let files = try fileManager.contentsOfDirectory(atPath: path)
             for file in files{
-                let ext = ((path+"/"+file) as NSString).pathExtension
-                print("\(file) - \(ext)")
+                var isDir : ObjCBool = false
+                if fileManager.fileExists(atPath: path + "/" + file, isDirectory:&isDir) {
+                    if isDir.boolValue {
+                        filehierarchy.append(File(type: .dir, name: file, url: path + "/" + file))
+                    } else {
+                        let ext = ((path+"/"+file) as NSString).pathExtension
+                        if ext == "png" || ext == "jpg" || ext  == "bmp" || ext == "tif" || ext == "gif" || ext == "PNG" || ext == "JPG" || ext  == "BMP" || ext == "TIF" || ext == "GIF" || ext == "jpeg" || ext == "JPEG" || ext == "tiff" || ext == "TIFF"{
+                            filehierarchy.append(File(type: .img, name: file, url: path + "/" + file))
+                        } else {
+                            filehierarchy.append(File(type: .file, name: file, url: path + "/" + file))
+                        }
+                    }
+                } else {
+                    filehierarchy.append(File(type: .file, name: file, url: path + "/" + file))
+                }
             }
         }
         catch let error as NSError {
@@ -76,9 +90,13 @@ class RepoLibTableViewController: UITableViewController {
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         filehierarchy = [File]()
         index = indexPath.row
+        loadindicator.startAnimating()
+        loadindicator.isHidden = false
         if isProfileFiles{
             getDataForProfileBranch(path: NSSearchPathForDirectoriesInDomains(.documentDirectory, .userDomainMask, true)[0]+filepath[branches[indexPath.row]]!)
-            
+            loadindicator.stopAnimating()
+            loadindicator.isHidden = true
+            self.performSegue(withIdentifier: "GoToBranch", sender: nil)
         } else {
             let headers = [
                 "Authorization" : "Basic " + UserDefaults.standard.string(forKey: "token")!
@@ -89,6 +107,8 @@ class RepoLibTableViewController: UITableViewController {
                 for ind in 0...data.count-1{
                     self.getDataForBranch(url: data[ind], name: data[ind]["name"].string!, dir: branches[indexPath.row])
                 }
+                loadindicator.stopAnimating()
+                loadindicator.isHidden = true
                 self.performSegue(withIdentifier: "GoToBranch", sender: nil)
             }
         }
